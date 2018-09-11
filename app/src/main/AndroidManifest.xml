@@ -9,40 +9,57 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:label="Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".invite.InviteActivity" />
-        <activity android:name=".account.LoginActivity" />
-        <activity android:name=".account.ProfileActivity" />
-        <activity android:name=".wallet.WalletActivity" />
-        <activity android:name=".wallet.TransactionHistoryActivity" />
-        <activity android:name=".wallet.receive.RequestMoneyActivity" />
-        <activity android:name=".wallet.send.SendMoneyActivity" />
-        <activity android:name=".wallet.send.ScannerActivity" />
+        <activity
+            android:name=".invite.InviteActivity"
+            android:label="My Activity Title" />
+        <activity
+            android:name=".account.LoginActivity"
+            android:label="Login" />
+        <activity
+            android:name=".account.ProfileActivity"
+            android:label="Profile" />
+        <activity
+            android:name=".wallet.WalletActivity"
+            android:label="Wallet" />
+        <activity
+            android:name=".wallet.TransactionHistoryActivity"
+            android:label="Tx History" />
+        <activity
+            android:name=".wallet.receive.RequestMoneyActivity"
+            android:label="Request Money" />
+        <activity
+            android:name=".wallet.send.SendMoneyActivity"
+            android:label="Send Money" />
+        <activity
+            android:name=".wallet.send.ScannerActivity"
+            android:label="Scan" />
 
-        <service
-            android:name=".push.PushService">
+        <service android:name=".push.PushService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
         <meta-data
-          android:name="com.google.firebase.messaging.default_notification_icon"
-          android:resource="@mipmap/ic_launcher" />
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/ic_launcher" />
         <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
              notification message. See README(https://goo.gl/6BKBk7) for more. -->
         <meta-data
-          android:name="com.google.firebase.messaging.default_notification_color"
-          android:resource="@color/colorAccent" />
-      </application>
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+    </application>
 
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
