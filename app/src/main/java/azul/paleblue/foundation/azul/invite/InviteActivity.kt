@@ -1,4 +1,4 @@
-package azul.paleblue.foundation.azul
+package azul.paleblue.foundation.azul.invite
 
 import android.app.Activity
 import android.os.Bundle

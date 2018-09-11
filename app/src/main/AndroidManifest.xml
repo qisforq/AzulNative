@@ -16,8 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".InviteActivity" />
-        <activity android:name=".ProfileActivity" />
+        <activity android:name=".invite.InviteActivity" />
+        <activity android:name=".account.LoginActivity" />
+        <activity android:name=".account.ProfileActivity" />
         <activity android:name=".wallet.WalletActivity" />
         <activity android:name=".wallet.TransactionHistoryActivity" />
         <activity android:name=".wallet.receive.RequestMoneyActivity" />

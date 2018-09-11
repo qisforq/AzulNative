@@ -3,8 +3,8 @@ package azul.paleblue.foundation.azul.push
 import azul.paleblue.foundation.azul.network.ApiClient
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.messaging.*
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.debug
+import org.jetbrains.anko.*
+
 
 class PushService : FirebaseMessagingService(), AnkoLogger {
 
@@ -26,6 +26,11 @@ class PushService : FirebaseMessagingService(), AnkoLogger {
     if (token != null) {
       apiClient.registerForPush(token)
     }
+  }
+
+  override fun onMessageReceived(message: RemoteMessage?) {
+    super.onMessageReceived(message)
+    info("Push Received: $message")
   }
 
 }
