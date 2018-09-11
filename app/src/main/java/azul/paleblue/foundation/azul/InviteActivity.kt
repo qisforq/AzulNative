@@ -5,19 +5,20 @@ import android.os.Bundle
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
-class MainActivity : Activity() {
+class InviteActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         verticalLayout {
-          padding = dip(30)
-          button("Main Activity") {
-              onClick {
-                  toast("Hello, world!")
-                  startActivity<InviteActivity>("id" to 5)
-              }
-          }
+            padding = dip(30)
+
+            button("Invite Activity") {
+                onClick {
+                    toast("I sent an invitation!")
+                }
+            }
         }
     }
+
 }
