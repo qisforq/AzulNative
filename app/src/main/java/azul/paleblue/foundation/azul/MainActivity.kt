@@ -12,6 +12,12 @@ class MainActivity : Activity() {
 
         verticalLayout {
           padding = dip(30)
+          button("Go to Profile Activity")  {
+              onClick {
+                  toast("Entering Profile activity")
+                  startActivity<ProfileActivity>()
+              }
+          }
           button("Main Activity") {
               onClick {
                   toast("Hello, world!")
@@ -19,5 +25,6 @@ class MainActivity : Activity() {
               }
           }
         }
+
     }
 }

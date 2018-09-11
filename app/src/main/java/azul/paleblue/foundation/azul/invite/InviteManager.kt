@@ -5,6 +5,7 @@ class InviteManager {
   // Accept
   fun acceptInvitation(code: String) { 
     // Pass code to server
+
   }
 
   // Invite a friend to join the app

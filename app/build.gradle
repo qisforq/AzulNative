@@ -83,7 +83,11 @@ dependencies {
   compile 'io.grpc:grpc-stub:1.14.0' // CURRENT_GRPC_VERSION
   compile 'javax.annotation:javax.annotation-api:1.2'
 
-  // Core
+
+    // Location
+    implementation "com.google.android.gms:play-services-location:15.0.1"
+
+    // Core
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
   implementation 'com.android.support.constraint:constraint-layout:1.1.3'

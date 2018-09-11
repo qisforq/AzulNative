@@ -7,15 +7,19 @@ import azul.paleblue.foundation.azul.network.ApiClient
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
+
+
 class InviteActivity : Activity(), AnkoLogger {
 
     fun makeEditable(s: String): Editable {
-      val f = Editable.Factory()
-      return f.newEditable(s)
+        val f = Editable.Factory()
+        return f.newEditable(s)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
+
 
         verticalLayout {
             padding = dip(30)
@@ -49,3 +53,5 @@ class InviteActivity : Activity(), AnkoLogger {
     }
 
 }
+
+
