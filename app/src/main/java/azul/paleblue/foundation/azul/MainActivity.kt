@@ -23,6 +23,11 @@ class MainActivity : Activity() {
                   startActivity<RequestMoneyActivity>("id" to 5)
               }
           }
+          button("Scan Barcode") {
+              onClick {
+                  startActivity<ScannerActivity>("id" to 5)
+              }
+          }
         }
     }
 }
