@@ -27,7 +27,12 @@ class MainActivity : Activity(), AnkoLogger {
                   startActivity<TestNetworkActivity>()
               }
           }
-
+          button("Go to Profile Activity")  {
+              onClick {
+                  toast("Entering Profile activity")
+                  startActivity<ProfileActivity>()
+              }
+          }
           button("Wallet") {
               onClick {
                   startActivity<WalletActivity>()
@@ -40,6 +45,7 @@ class MainActivity : Activity(), AnkoLogger {
               }
           }
         }
+
     }
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
