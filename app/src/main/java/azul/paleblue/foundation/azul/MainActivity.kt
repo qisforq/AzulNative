@@ -10,6 +10,7 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
 import android.view.MenuInflater
 import android.view.MenuItem
 import azul.paleblue.foundation.azul.account.LoginActivity
+import azul.paleblue.foundation.azul.network.TestNetworkActivity
 
 
 class MainActivity : Activity(), AnkoLogger {
@@ -20,6 +21,12 @@ class MainActivity : Activity(), AnkoLogger {
         verticalLayout {
           padding = dip(30)
           textView("Main Activity")
+          
+          button("Test Network") {
+              onClick {
+                  startActivity<TestNetworkActivity>()
+              }
+          }
 
           button("Wallet") {
               onClick {

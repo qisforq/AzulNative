@@ -22,11 +22,11 @@ class TestNetworkActivity : Activity(), AnkoLogger {
 
             val host = editText {
               hint = "Host"
-              text = makeEditable("192.168.1.95")
+              text = makeEditable("192.168.1.48")
             }
             val port = editText {
               hint = "Port"
-              text = makeEditable("50051")
+              text = makeEditable("5001")
             }
             val name = editText {
               hint = "Message"
