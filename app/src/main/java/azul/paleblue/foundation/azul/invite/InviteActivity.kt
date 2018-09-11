@@ -1,51 +1,92 @@
 package azul.paleblue.foundation.azul.invite
 
 import android.app.Activity
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModel
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
+import azul.paleblue.foundation.azul.R
 import azul.paleblue.foundation.azul.network.ApiClient
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
+import android.arch.lifecycle.ViewModelProviders
+import android.support.v4.app.FragmentActivity
+import android.widget.TextView
 
-class InviteActivity : Activity(), AnkoLogger {
 
-    fun makeEditable(s: String): Editable {
-      val f = Editable.Factory()
-      return f.newEditable(s)
-    }
+class InviteActivity : FragmentActivity(), AnkoLogger {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
 
-        verticalLayout {
-            padding = dip(30)
+    val model = ViewModelProviders.of(this).get(InviteViewModel::class.java!!)
 
-            val host = editText {
-              hint = "Host"
-              text = makeEditable("192.168.1.95")
-            }
-            val port = editText {
-              hint = "Port"
-              text = makeEditable("50051")
-            }
-            val name = editText {
-              hint = "Message"
-              text = makeEditable("Azul Wallet")
-            }
+    var inviteText: TextView? = null
 
-            button("Invite Activity") {
-                onClick {
-                    toast("Sending Invite")
-                    doAsync {
-                        info("Sending invite")
-                        val apiClient = ApiClient(host.text.toString(), Integer.parseInt(port.text.toString()))
-                        val response = apiClient.sendMessage(name.text.toString())
-                        info("Invite response received: $response")
-                        toast(response)
-                    }
-                }
-            }
+    verticalLayout {
+      padding = dip(30)
+
+      inviteText = textView()
+
+      button("Get Code") {
+        onClick {
+          toast("Disabled")
+          // getInviteCode()
         }
+      }
+
+      button("Share Code") {
+        onClick {
+          shareInviteCode()
+        }
+      }
     }
 
+    model.getInviteCode().observe(this, Observer {
+      inviteText!!.text = it
+    })
+  }
+
+//  fun getInviteCode() {
+//    toast("Sending Invite")
+//    doAsync {
+//      info("Sending invite")
+//      val apiClient = ApiClient()
+//      val inviteCode = apiClient.generateInvite()
+//      info("Invite code received: $inviteCode")
+//    }
+//  }
+
+  fun shareInviteCode() {
+    val model = ViewModelProviders.of(this).get(InviteViewModel::class.java!!)
+    val code = model.getInviteCode().value
+
+    val sendIntent: Intent = Intent().apply {
+      action = Intent.ACTION_SEND
+      putExtra(Intent.EXTRA_TEXT, "Please use this invite code to join Azul: $code")
+      type = "text/plain"
+    }
+    startActivity(Intent.createChooser(sendIntent, resources.getText(R.string.invite_which_app)))
+  }
+}
+
+
+class InviteViewModel : ViewModel() {
+  private var inviteCode: MutableLiveData<String>? = null
+
+  fun getInviteCode(): LiveData<String> {
+    if (inviteCode == null) {
+      inviteCode = MutableLiveData<String>()
+      loadInviteCode()
+    }
+    return inviteCode as MutableLiveData<String>
+  }
+
+  private fun loadInviteCode() {
+    val apiClient = ApiClient()
+    inviteCode!!.value = apiClient.generateInvite()
+  }
 }
