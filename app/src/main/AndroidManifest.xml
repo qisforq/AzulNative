@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".WalletActivity" />
+        <activity android:name=".RequestMoneyActivity" />
         <activity android:name=".InviteActivity" />
         <activity android:name=".ProfileActivity" />
 
@@ -35,9 +36,9 @@
         <meta-data
           android:name="com.google.firebase.messaging.default_notification_color"
           android:resource="@color/colorAccent" />
-    </application>
+      </application>
 
-
+    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

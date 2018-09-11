@@ -12,10 +12,15 @@ class MainActivity : Activity() {
 
         verticalLayout {
           padding = dip(30)
-          button("Main Activity") {
+          textView("Main Activity")
+          button("Invite Friends") {
               onClick {
-                  toast("Hello, world!")
                   startActivity<InviteActivity>("id" to 5)
+              }
+          }
+          button("Request Money") {
+              onClick {
+                  startActivity<RequestMoneyActivity>("id" to 5)
               }
           }
         }

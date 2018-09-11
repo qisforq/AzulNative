@@ -83,6 +83,10 @@ dependencies {
   compile 'io.grpc:grpc-stub:1.14.0' // CURRENT_GRPC_VERSION
   compile 'javax.annotation:javax.annotation-api:1.2'
 
+  // Barcode
+  implementation 'com.google.zxing:core:3.2.1'
+  // implementation 'com.budiyev.android:code-scanner:1.9.4'
+
   // Core
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
