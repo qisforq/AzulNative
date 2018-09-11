@@ -58,6 +58,22 @@ class InviteActivity : Activity(), AnkoLogger {
 }
 
 
+class InviteViewModel : ViewModel() {
+  private var inviteCode: MutableLiveData<String>? = null
+
+  fun getInviteCode(): LiveData<InviteCode> {
+    if (inviteCode == null) {
+      inviteCode = MutableLiveData<InviteCode>()
+      loadInviteCode()
+    }
+    return inviteCode
+  }
+
+  private fun loadInviteCode() {
+
+  }
+}
+
 class MyViewModel : ViewModel() {
   private var users: MutableLiveData<List<User>>? = null
 
