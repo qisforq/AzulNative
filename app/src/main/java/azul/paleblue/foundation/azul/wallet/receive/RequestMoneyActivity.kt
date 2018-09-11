@@ -1,4 +1,4 @@
-package azul.paleblue.foundation.azul
+package azul.paleblue.foundation.azul.wallet.receive
 
 import android.app.Activity
 import android.graphics.Bitmap
@@ -43,7 +43,6 @@ class RequestMoneyActivity : Activity() {
     } else {
       imageView.setImageBitmap(bitmap)
     }
-    //val path = saveImage(bitmap)  //give read write permission
   }
 
   fun createBitmap(matrix: BitMatrix): Bitmap {

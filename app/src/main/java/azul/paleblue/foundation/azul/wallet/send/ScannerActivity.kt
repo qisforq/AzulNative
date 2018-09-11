@@ -1,6 +1,7 @@
-package azul.paleblue.foundation.azul
+package azul.paleblue.foundation.azul.wallet.send
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import com.google.zxing.Result
 import org.jetbrains.anko.AnkoLogger
@@ -32,7 +33,13 @@ class ScannerActivity: Activity(), ZXingScannerView.ResultHandler, AnkoLogger {
     verbose(rawResult.getText()) // Prints scan results
     verbose(rawResult.getBarcodeFormat().toString()) // Prints the scan format (qrcode, pdf417 etc.)
 
+    val intent = Intent()
+    intent.putExtra("barcodePayload", rawResult.text)
+    intent.putExtra("barcodeFormat", rawResult.barcodeFormat.toString())
+
+    setResult(1, intent)
+    finish()
     // If you would like to resume scanning, call this method below:
-    mScannerView!!.resumeCameraPreview(this)
+    //mScannerView!!.resumeCameraPreview(this)
   }
 }
