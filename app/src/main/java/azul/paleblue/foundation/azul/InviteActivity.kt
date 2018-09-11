@@ -17,8 +17,6 @@ class InviteActivity : Activity(), AnkoLogger {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val apiClient = ApiClient()
-
         verticalLayout {
             padding = dip(30)
 
@@ -40,10 +38,9 @@ class InviteActivity : Activity(), AnkoLogger {
                     toast("Sending Invite")
                     doAsync {
                         info("Sending invite")
-                        val response = apiClient.sendMessage(host.text.toString(), port.text.toString(), name.text.toString())
+                        val apiClient = ApiClient(host.text.toString(), Integer.parseInt(port.text.toString()))
+                        val response = apiClient.sendMessage(name.text.toString())
                         info("Invite response received: $response")
-                        //thread(start = true) {
-                        //println("running from thread(): ${Thread.currentThread()}")
                         toast(response)
                     }
                 }
