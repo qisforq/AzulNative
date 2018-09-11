@@ -7,16 +7,17 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.debug
 import java.io.PrintWriter
 import java.io.StringWriter
+              
+val defaultHost = "192.168.1.95"
+val defaultPort = 50051
 
-class ApiClient(host: String, port: Int): AnkoLogger {
-    // TODO: Integrate gRPC
-
+class ApiClient(host: String = defaultHost, port: Int = defaultPort): AnkoLogger {
     private val channel: ManagedChannel
-    private val stub: AzulCoreGrpc.AzulCoreBlockingStub
+    private val stub: AzulGrpc.AzulBlockingStub
 
     init {
       channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build()
-      stub = AzulCoreGrpc.newBlockingStub(channel)
+      stub = AzulGrpc.newBlockingStub(channel)
     }
 
     fun generateInvite(): String {
@@ -33,6 +34,14 @@ class ApiClient(host: String, port: Int): AnkoLogger {
       val reply = stub.redeemInvite(request)
       return reply.result
     }
+    
+    fun registerForPush(pushToken: String): RegisterForPushReply.RegisterForPushResult {
+      val request = RegisterForPushRequest.newBuilder()
+      .setToken(pushToken)
+      .build()
+      val reply = stub.registerForPush(request)
+      return reply.result
+    }
 
     fun sendMessage(message: String): String {
         try {
@@ -47,7 +56,6 @@ class ApiClient(host: String, port: Int): AnkoLogger {
             pw.flush()
             return String.format("Failed... : %n%s", sw)
         }
-
     }
 }
 

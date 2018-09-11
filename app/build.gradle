@@ -21,6 +21,7 @@ buildscript {
 repositories {
     mavenCentral()
     mavenLocal()
+    google()
 }
 
 android {
@@ -71,6 +72,9 @@ dependencies {
   // Coroutine listeners for Anko Layouts
   implementation "org.jetbrains.anko:anko-sdk25-coroutines:$anko_version"
   implementation "org.jetbrains.anko:anko-appcompat-v7-coroutines:$anko_version"
+
+  // Push
+  implementation 'com.google.firebase:firebase-messaging:17.3.0'
 
   // gRPC-java
   // You need to build grpc-java to obtain these libraries below.
