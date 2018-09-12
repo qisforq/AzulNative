@@ -78,7 +78,9 @@ class MainActivity : Activity(), AnkoLogger {
       if (segments.size > 1) {
         val inviteCode = segments[1]
         info("Invite code was: $inviteCode")
-        InviteCodeStorage(this).storeCode(inviteCode)
+        if (inviteCode != null) {
+          InviteCodeStorage(this).storeCode(inviteCode)
+        }
       }
     }
   }
