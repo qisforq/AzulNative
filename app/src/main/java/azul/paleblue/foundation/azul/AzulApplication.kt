@@ -11,11 +11,11 @@ val port = 50051
 class AzulApplication : Application() {
 
   val apiClient: ApiClient = ApiClient(host, port)
-  lateinit var inviteFriendsModel: InviteFriendsModel
+  val inviteFriendsModel = InviteFriendsModel(apiClient)
   val pushModel: PushModel = PushModel(apiClient)
 
   override fun onCreate() {
     super.onCreate()
- }
+  }
 
 }

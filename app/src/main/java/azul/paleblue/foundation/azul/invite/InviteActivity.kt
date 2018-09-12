@@ -31,12 +31,16 @@ class InviteActivity : FragmentActivity(), AnkoLogger {
     verticalLayout {
       padding = dip(30)
 
-      inviteText = textView()
+      linearLayout {
+        textView("Invite Code:")
+        //inviteText = textView("Placeholder Code")
+        inviteText = textView(viewModel.inviteCode.value)
+      }
 
       button("Get Code") {
         onClick {
           toast("Disabled")
-          // getInviteCode()
+          //getInviteCode()
         }
       }
 

@@ -12,7 +12,8 @@ class InviteFriendsModel constructor(val apiClient: ApiClient) {
   
   fun generateInvite(): Future<String> {
     return doAsyncResult {
-      apiClient.generateInvite()
+      //apiClient.generateInvite()
+      "XYZZY"
     }
   }
 
