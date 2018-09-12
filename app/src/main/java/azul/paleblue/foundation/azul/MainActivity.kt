@@ -11,6 +11,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import azul.paleblue.foundation.azul.account.LoginActivity
 import azul.paleblue.foundation.azul.account.ProfileActivity
+import azul.paleblue.foundation.azul.account.RedeemInviteActivity
 import azul.paleblue.foundation.azul.network.TestNetworkActivity
 
 
@@ -45,6 +46,13 @@ class MainActivity : Activity(), AnkoLogger {
                   startActivity<InviteActivity>()
               }
           }
+
+          button("Redeem Invite") {
+              onClick {
+                  startActivity<RedeemInviteActivity>()
+              }
+          }
+
         }
 
     }
