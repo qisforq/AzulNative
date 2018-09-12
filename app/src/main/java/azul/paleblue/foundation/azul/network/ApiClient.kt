@@ -1,5 +1,6 @@
 package azul.paleblue.foundation.azul.network
 
+import android.location.Location
 import io.grpc.ManagedChannel
 import io.grpc.ManagedChannelBuilder
 import foundation.paleblue.azul.proto.*
@@ -24,10 +25,12 @@ class ApiClient constructor(host: String, port: Int): AnkoLogger {
       return reply.inviteCode
     }
     
-    fun redeemInvite(inviteCode: String): RedeemInviteReply.RedeemInviteResult {
+    fun redeemInvite(inviteCode: String, location: Location): RedeemInviteReply.RedeemInviteResult {
       val request = RedeemInviteRequest.newBuilder()
-      .setInviteCode(inviteCode)
-      .build()
+          .setInviteCode(inviteCode)
+          .setLatitude(location.latitude)
+          .setLongitude(location.longitude)
+          .build()
       val reply = stub.redeemInvite(request)
       return reply.result
     }
