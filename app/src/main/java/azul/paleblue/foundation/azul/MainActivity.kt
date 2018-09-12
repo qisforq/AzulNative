@@ -7,47 +7,49 @@ import azul.paleblue.foundation.azul.invite.InviteActivity
 import azul.paleblue.foundation.azul.wallet.WalletActivity
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk15.coroutines.onClick
-import android.view.MenuInflater
 import android.view.MenuItem
 import azul.paleblue.foundation.azul.account.LoginActivity
 import azul.paleblue.foundation.azul.account.ProfileActivity
 import azul.paleblue.foundation.azul.network.TestNetworkActivity
+import android.content.Intent
+import azul.paleblue.foundation.azul.invite.InviteCodeStorage
 
 
 class MainActivity : Activity(), AnkoLogger {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
 
-        verticalLayout {
-          padding = dip(30)
-          textView("Main Activity")
-          
-          button("Test Network") {
-              onClick {
-                  startActivity<TestNetworkActivity>()
-              }
-          }
-          button("Go to Profile Activity")  {
-              onClick {
-                  toast("Entering Profile activity")
-                  startActivity<ProfileActivity>()
-              }
-          }
-          button("Wallet") {
-              onClick {
-                  startActivity<WalletActivity>()
-              }
-          }
+    getInviteCodeFromUrl()
 
-          button("Invite Friends") {
-              onClick {
-                  startActivity<InviteActivity>()
-              }
-          }
+    verticalLayout {
+      padding = dip(30)
+      textView("Main Activity")
+
+      button("Test Network") {
+        onClick {
+          startActivity<TestNetworkActivity>()
         }
+      }
+      button("Go to Profile Activity") {
+        onClick {
+          toast("Entering Profile activity")
+          startActivity<ProfileActivity>()
+        }
+      }
+      button("Wallet") {
+        onClick {
+          startActivity<WalletActivity>()
+        }
+      }
 
+      button("Invite Friends") {
+        onClick {
+          startActivity<InviteActivity>()
+        }
+      }
     }
+  }
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
     val inflater = menuInflater
@@ -68,7 +70,16 @@ class MainActivity : Activity(), AnkoLogger {
       }
       else -> return super.onOptionsItemSelected(item)
     }
-
   }
 
+  fun getInviteCodeFromUrl() {
+    if (Intent.ACTION_VIEW == intent.action) {
+      val segments = intent.data!!.pathSegments
+      if (segments.size > 1) {
+        val inviteCode = segments[1]
+        info("Invite code was: $inviteCode")
+        InviteCodeStorage(this).storeCode(inviteCode)
+      }
+    }
+  }
 }

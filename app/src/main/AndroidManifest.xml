@@ -14,11 +14,23 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="Main">
+            android:label="Azul Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+              </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http"
+                      android:host="paleblue.foundation"
+                      android:pathPrefix="/invite/" />
+                <data android:scheme="http"
+                      android:host="www.paleblue.foundation"
+                      android:pathPrefix="/invite/" />
             </intent-filter>
         </activity>
         <activity
