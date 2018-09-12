@@ -6,9 +6,9 @@ import android.arch.lifecycle.ViewModel
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-class InviteFriendsViewModel : ViewModel() {
+class InviteViewModel : ViewModel() {
 
-  var model: InviteFriendsModel? = null
+  var model: InviteModel? = null
 
   private val _inviteCode: MutableLiveData<String> = MutableLiveData<String>()
 

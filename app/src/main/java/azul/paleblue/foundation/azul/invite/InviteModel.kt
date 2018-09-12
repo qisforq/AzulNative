@@ -5,7 +5,7 @@ import foundation.paleblue.azul.proto.RedeemInviteReply
 import org.jetbrains.anko.doAsyncResult
 import java.util.concurrent.Future
 
-class InviteFriendsModel constructor(val apiClient: ApiClient) {
+class InviteModel constructor(val apiClient: ApiClient) {
 
   fun invitesRemaining(): Int {
     return -1
