@@ -3,6 +3,7 @@
     package="azul.paleblue.foundation.azul">
 
     <application
+        android:name=".AzulApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

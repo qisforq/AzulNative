@@ -7,11 +7,8 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.debug
 import java.io.PrintWriter
 import java.io.StringWriter
-              
-val defaultHost = "192.168.1.95"
-val defaultPort = 50051
 
-class ApiClient(host: String = defaultHost, port: Int = defaultPort): AnkoLogger {
+class ApiClient constructor(host: String, port: Int): AnkoLogger {
     private val channel: ManagedChannel
     private val stub: AzulGrpc.AzulBlockingStub
 

@@ -1,28 +1,30 @@
 package azul.paleblue.foundation.azul.invite
 
-import android.app.Activity
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModel
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
 import azul.paleblue.foundation.azul.R
 import azul.paleblue.foundation.azul.network.ApiClient
 import org.jetbrains.anko.*
-import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.sdk15.coroutines.onClick
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v4.app.FragmentActivity
 import android.widget.TextView
+import azul.paleblue.foundation.azul.AzulApplication
 
 
 class InviteActivity : FragmentActivity(), AnkoLogger {
 
+  lateinit var model: InviteFriendsModel
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    val model = ViewModelProviders.of(this).get(InviteViewModel::class.java!!)
+    val app = application as AzulApplication
+    model = app.inviteFriendsModel
+
+    val viewModel = ViewModelProviders.of(this).get(InviteFriendsViewModel::class.java)
+    viewModel.model = model
 
     var inviteText: TextView? = null
 
@@ -45,24 +47,14 @@ class InviteActivity : FragmentActivity(), AnkoLogger {
       }
     }
 
-    model.getInviteCode().observe(this, Observer {
+    viewModel.inviteCode.observe(this, Observer {
       inviteText!!.text = it
     })
   }
 
-//  fun getInviteCode() {
-//    toast("Sending Invite")
-//    doAsync {
-//      info("Sending invite")
-//      val apiClient = ApiClient()
-//      val inviteCode = apiClient.generateInvite()
-//      info("Invite code received: $inviteCode")
-//    }
-//  }
-
   fun shareInviteCode() {
-    val model = ViewModelProviders.of(this).get(InviteViewModel::class.java!!)
-    val code = model.getInviteCode().value
+    val model = ViewModelProviders.of(this).get(InviteFriendsViewModel::class.java)
+    val code = model.inviteCode.value
 
     val sendIntent: Intent = Intent().apply {
       action = Intent.ACTION_SEND
@@ -74,19 +66,3 @@ class InviteActivity : FragmentActivity(), AnkoLogger {
 }
 
 
-class InviteViewModel : ViewModel() {
-  private var inviteCode: MutableLiveData<String>? = null
-
-  fun getInviteCode(): LiveData<String> {
-    if (inviteCode == null) {
-      inviteCode = MutableLiveData<String>()
-      loadInviteCode()
-    }
-    return inviteCode as MutableLiveData<String>
-  }
-
-  private fun loadInviteCode() {
-    val apiClient = ApiClient()
-    inviteCode!!.value = apiClient.generateInvite()
-  }
-}

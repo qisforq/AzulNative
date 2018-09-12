@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import azul.paleblue.foundation.azul.network.ApiClient
 import org.jetbrains.anko.*
-import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.sdk15.coroutines.onClick
 
 class TestNetworkActivity : Activity(), AnkoLogger {
 
