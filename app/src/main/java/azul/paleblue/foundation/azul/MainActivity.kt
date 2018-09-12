@@ -10,6 +10,7 @@ import org.jetbrains.anko.sdk15.coroutines.onClick
 import android.view.MenuItem
 import azul.paleblue.foundation.azul.account.LoginActivity
 import azul.paleblue.foundation.azul.account.ProfileActivity
+import azul.paleblue.foundation.azul.account.RedeemInviteActivity
 import azul.paleblue.foundation.azul.network.TestNetworkActivity
 import android.content.Intent
 import azul.paleblue.foundation.azul.invite.InviteCodeStorage
@@ -36,6 +37,11 @@ class MainActivity : Activity(), AnkoLogger {
           toast("Entering Profile activity")
           startActivity<ProfileActivity>()
         }
+      }
+      button("Redeem Invite") {
+          onClick {
+              startActivity<RedeemInviteActivity>()
+          }
       }
       button("Wallet") {
         onClick {
