@@ -24,13 +24,13 @@ class ApiClient constructor(host: String, port: Int): AnkoLogger {
       val reply = stub.generateInvite(request)
       return reply.inviteCode
     }
-    
+
     fun redeemInvite(inviteCode: String, location: Location): RedeemInviteReply.RedeemInviteResult {
       val request = RedeemInviteRequest.newBuilder()
-          .setInviteCode(inviteCode)
-          .setLatitude(location.latitude)
-          .setLongitude(location.longitude)
-          .build()
+      .setInviteCode(inviteCode)
+              .setLatitude(location.latitude)
+              .setLongitude(location.longitude)
+      .build()
       val reply = stub.redeemInvite(request)
       return reply.result
     }

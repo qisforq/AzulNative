@@ -7,11 +7,12 @@ import azul.paleblue.foundation.azul.network.ApiClient
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk15.coroutines.onClick
 
-class TestNetworkActivity : Activity(), AnkoLogger {
+
+class InviteActivity : Activity(), AnkoLogger {
 
     fun makeEditable(s: String): Editable {
-      val f = Editable.Factory()
-      return f.newEditable(s)
+        val f = Editable.Factory()
+        return f.newEditable(s)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,3 +50,5 @@ class TestNetworkActivity : Activity(), AnkoLogger {
     }
 
 }
+
+

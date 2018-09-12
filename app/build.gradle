@@ -107,7 +107,11 @@ dependencies {
   // ViewModel and LiveData
   implementation "android.arch.lifecycle:extensions:$lifecycle_version"
 
-  // Core
+
+    // Location
+    implementation "com.google.android.gms:play-services-location:15.0.1"
+
+    // Core
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
   implementation 'com.android.support.constraint:constraint-layout:1.1.3'

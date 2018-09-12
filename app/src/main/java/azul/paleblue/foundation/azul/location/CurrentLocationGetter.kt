@@ -9,7 +9,7 @@ import com.google.android.gms.tasks.OnSuccessListener
 class CurrentLocationGetter(context: Context) {
 
 
-    private val fusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
+  private val fusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
 
     fun getCurrentLocation(onSuccess: OnSuccessListener<Location?>) {
 //         TODO: Return Current Location
