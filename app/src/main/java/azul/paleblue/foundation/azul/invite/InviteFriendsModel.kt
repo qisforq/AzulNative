@@ -1,6 +1,7 @@
 package azul.paleblue.foundation.azul.invite
 
 import azul.paleblue.foundation.azul.network.ApiClient
+import foundation.paleblue.azul.proto.RedeemInviteReply
 import org.jetbrains.anko.doAsyncResult
 import java.util.concurrent.Future
 
@@ -17,7 +18,9 @@ class InviteFriendsModel constructor(val apiClient: ApiClient) {
     }
   }
 
-  fun redeemInvite(code: String) {
-
+  fun redeemInvite(code: String): Future<RedeemInviteReply.RedeemInviteResult> {
+    return doAsyncResult {
+      apiClient.redeemInvite(code)
+    }
   }
 }

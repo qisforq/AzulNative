@@ -4,7 +4,6 @@ import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
 import azul.paleblue.foundation.azul.R
-import azul.paleblue.foundation.azul.network.ApiClient
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk15.coroutines.onClick
 import android.arch.lifecycle.ViewModelProviders
