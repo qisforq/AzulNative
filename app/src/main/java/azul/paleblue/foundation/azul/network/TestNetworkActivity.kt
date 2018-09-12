@@ -8,7 +8,7 @@ import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk15.coroutines.onClick
 
 
-class InviteActivity : Activity(), AnkoLogger {
+class TestNetworkActivity : Activity(), AnkoLogger {
 
     fun makeEditable(s: String): Editable {
         val f = Editable.Factory()

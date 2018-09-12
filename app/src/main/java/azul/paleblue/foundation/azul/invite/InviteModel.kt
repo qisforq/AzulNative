@@ -1,5 +1,6 @@
 package azul.paleblue.foundation.azul.invite
 
+import android.location.Location
 import azul.paleblue.foundation.azul.network.ApiClient
 import foundation.paleblue.azul.proto.RedeemInviteReply
 import org.jetbrains.anko.doAsyncResult
@@ -19,8 +20,10 @@ class InviteModel constructor(val apiClient: ApiClient) {
   }
 
   fun redeemInvite(code: String): Future<RedeemInviteReply.RedeemInviteResult> {
+    // locationGetter.getCurrentLocation(OnSuccessListener {
     return doAsyncResult {
-      apiClient.redeemInvite(code)
+      // TODO: Pass a real Location
+      apiClient.redeemInvite(code, Location("TEST"))
     }
   }
 }

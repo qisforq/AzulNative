@@ -10,6 +10,7 @@ import org.jetbrains.anko.sdk15.coroutines.onClick
 import android.view.MenuInflater
 import android.view.MenuItem
 import azul.paleblue.foundation.azul.account.LoginActivity
+import azul.paleblue.foundation.azul.account.ProfileActivity
 import azul.paleblue.foundation.azul.network.TestNetworkActivity
 
 
