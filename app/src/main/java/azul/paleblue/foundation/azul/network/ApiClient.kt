@@ -9,53 +9,56 @@ import org.jetbrains.anko.debug
 import java.io.PrintWriter
 import java.io.StringWriter
 
-class ApiClient constructor(host: String, port: Int): AnkoLogger {
-    private val channel: ManagedChannel
-    private val stub: AzulGrpc.AzulBlockingStub
+class ApiClient constructor(host: String, port: Int) : AnkoLogger {
+  private val channel: ManagedChannel
+  private val stub: AzulGrpc.AzulBlockingStub
 
-    init {
-      channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build()
-      stub = AzulGrpc.newBlockingStub(channel)
-    }
+  init {
+    channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build()
+    stub = AzulGrpc.newBlockingStub(channel)
+  }
 
-    fun generateInvite(): String {
-      val request = GenerateInviteRequest.newBuilder()
-      .build()
-      val reply = stub.generateInvite(request)
-      return reply.inviteCode
-    }
+  fun generateInvite(): String {
+    val request = GenerateInviteRequest.newBuilder()
+        .build()
+    val reply = stub.generateInvite(request)
+    return reply.inviteCode
+  }
 
-    fun redeemInvite(inviteCode: String, location: Location): RedeemInviteReply.RedeemInviteResult {
-      val request = RedeemInviteRequest.newBuilder()
-      .setInviteCode(inviteCode)
-              .setLatitude(location.latitude)
-              .setLongitude(location.longitude)
-      .build()
-      val reply = stub.redeemInvite(request)
-      return reply.result
-    }
-    
-    fun registerForPush(pushToken: String): RegisterForPushReply.RegisterForPushResult {
-      val request = RegisterForPushRequest.newBuilder()
-      .setToken(pushToken)
-      .build()
-      val reply = stub.registerForPush(request)
-      return reply.result
+  fun redeemInvite(inviteCode: String, location: Location?): RedeemInviteReply.RedeemInviteResult {
+    val request = RedeemInviteRequest.newBuilder()
+        .setInviteCode(inviteCode)
+
+    if (location != null) {
+      request.setLatitude(location.latitude)
+          .setLongitude(location.longitude)
     }
 
-    fun sendMessage(message: String): String {
-        try {
-            val request = HelloRequest.newBuilder().setName(message).build()
-            val reply = stub.sayHello(request)
-            debug("Got reply: $reply")
-            return reply.message
-        } catch (e: Exception) {
-            val sw = StringWriter()
-            val pw = PrintWriter(sw)
-            e.printStackTrace(pw)
-            pw.flush()
-            return String.format("Failed... : %n%s", sw)
-        }
+    val reply = stub.redeemInvite(request.build())
+    return reply.result
+  }
+
+  fun registerForPush(pushToken: String): RegisterForPushReply.RegisterForPushResult {
+    val request = RegisterForPushRequest.newBuilder()
+        .setToken(pushToken)
+        .build()
+    val reply = stub.registerForPush(request)
+    return reply.result
+  }
+
+  fun sendMessage(message: String): String {
+    try {
+      val request = HelloRequest.newBuilder().setName(message).build()
+      val reply = stub.sayHello(request)
+      debug("Got reply: $reply")
+      return reply.message
+    } catch (e: Exception) {
+      val sw = StringWriter()
+      val pw = PrintWriter(sw)
+      e.printStackTrace(pw)
+      pw.flush()
+      return String.format("Failed... : %n%s", sw)
     }
+  }
 }
 
