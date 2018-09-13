@@ -4,10 +4,13 @@ import android.app.Activity
 import android.graphics.Bitmap
 import android.graphics.Color.BLACK
 import android.graphics.Color.WHITE
-// import android.R
+import android.net.Uri
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
+import azul.paleblue.foundation.azul.R
 import com.google.zxing.BarcodeFormat
+import com.google.zxing.Dimension
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
 import com.google.zxing.common.BitMatrix
@@ -15,29 +18,33 @@ import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk15.coroutines.onClick
 
 
-class RequestMoneyActivity : Activity() {
+class RequestMoneyActivity : Activity(), AnkoLogger {
 
   val QRcodeWidth = 200
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    verticalLayout {
-      padding = dip(30)
+    setContentView(R.layout.activity_request_money)
 
-      val qrCodeView = imageView()
-
-      button("Make QR Code") {
-        onClick {
-          makeQrCode(qrCodeView)
-        }
-      }
+    findViewById<Button>(R.id.makeQrCode).onClick {
+      makeQrCode(findViewById<ImageView>(R.id.qrCode))
     }
+  }
 
+  val requestMoneyUri = "bitcoin:mjSk1Ny9spzU2fouzYgLqGUD8U41iR35QN?amount=0.10&label=Example+Merchant&message=Order+of+flowers+%26+chocolates&r=https://example.com/pay/mjSk1Ny9spzU2fouzYgLqGUD8U41iR35QN"
+
+  fun makeUri(walletAddress: String, amount: String, label: String, message: String, requestUrl: String): Uri {
+    return Uri.Builder().path(walletAddress)
+        .appendQueryParameter("amount", amount)
+        .appendQueryParameter("label", label)
+        .appendQueryParameter("message", message)
+        .appendQueryParameter("r", requestUrl)
+        .build()
   }
 
   fun makeQrCode(imageView: ImageView) {
-    val bitmap = encodeText("Text to encode")
+    val bitmap = encodeText(requestMoneyUri, Dimension(imageView.width, imageView.height))
     if (bitmap == null) {
       error("Bitmap was null!")
     } else {
@@ -49,9 +56,9 @@ class RequestMoneyActivity : Activity() {
     val width = matrix.getWidth()
     val height = matrix.getHeight()
     val pixels = IntArray(width * height)
-    for (y in 0 .. height - 1) {
+    for (y in 0..height - 1) {
       val offset = y * width
-      for (x in 0 .. width - 1) {
+      for (x in 0..width - 1) {
         pixels[offset + x] = if (matrix.get(x, y)) {
           BLACK
         } else {
@@ -65,18 +72,17 @@ class RequestMoneyActivity : Activity() {
     return bitmap
   }
 
-fun encodeText(text: String): Bitmap? {
-  val multiFormatWriter = MultiFormatWriter()
-  try {
-    val bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.QR_CODE,200,200)
-    //val barcodeEncoder = BarcodeEncoder()
-    //val bitmap = barcodeEncoder.createBitmap(bitMatrix)
-    return createBitmap(bitMatrix)
-  } catch (e: WriterException) {
-    e.printStackTrace()
-    return null
+  fun encodeText(text: String, dimensions: Dimension): Bitmap? {
+    val multiFormatWriter = MultiFormatWriter()
+    try {
+      info(dimensions)
+      val bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.QR_CODE, dimensions.width, dimensions.height)
+      return createBitmap(bitMatrix)
+    } catch (e: WriterException) {
+      e.printStackTrace()
+      return null
+    }
   }
-}
 
 //  private fun encodeText(Value: String): Bitmap? {
 //    val bitMatrix: BitMatrix
