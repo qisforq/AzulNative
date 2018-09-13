@@ -6,7 +6,7 @@ import azul.paleblue.foundation.azul.network.ApiClient
 import com.google.android.gms.tasks.OnSuccessListener
 import org.jetbrains.anko.*
 
-class RedeemInviteModel(val apiClient: ApiClient, val locationGetter: CurrentLocationGetter): AnkoLogger
+class RedeemInviteModel(val apiClient: ApiClient, val locationGetter: CurrentLocationGetter, val inviteCodeStorage: InviteCodeStorage): AnkoLogger
 {
   val inviteCode: String = "EXAMPLE"
   var location: Location? = null

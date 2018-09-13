@@ -17,6 +17,13 @@ class ApiClient constructor(host: String, port: Int) : AnkoLogger {
     channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build()
     stub = AzulGrpc.newBlockingStub(channel)
   }
+  
+  fun login(username: String, password: String): String {
+    val request = LoginRequest.newBuilder()
+        .build()
+    val reply = stub.login(request)
+    return reply.sessionToken
+  }
 
   fun generateInvite(): String {
     val request = GenerateInviteRequest.newBuilder()

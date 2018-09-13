@@ -1,6 +1,7 @@
 package azul.paleblue.foundation.azul
 
 import android.app.Application
+import azul.paleblue.foundation.azul.invite.InviteCodeStorage
 import azul.paleblue.foundation.azul.invite.InviteModel
 import azul.paleblue.foundation.azul.invite.RedeemInviteModel
 import azul.paleblue.foundation.azul.location.CurrentLocationGetter
@@ -14,8 +15,11 @@ class AzulApplication : Application() {
 
   val apiClient: ApiClient = ApiClient(host, port)
   val locationGetter = CurrentLocationGetter(this)
+
+  val inviteCodeStorage = InviteCodeStorage(this)
+
   val inviteFriendsModel = InviteModel(apiClient)
-  val redeemInviteModel = RedeemInviteModel(apiClient, locationGetter)
+  val redeemInviteModel = RedeemInviteModel(apiClient, locationGetter, inviteCodeStorage)
   val pushModel: PushModel = PushModel(apiClient)
 
   override fun onCreate() {
