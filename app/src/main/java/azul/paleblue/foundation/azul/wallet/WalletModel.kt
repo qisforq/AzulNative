@@ -3,19 +3,29 @@ package azul.paleblue.foundation.azul.wallet
 import android.arch.lifecycle.LiveData
 import azul.paleblue.foundation.azul.network.ApiClient
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.doAsyncResult
+import java.math.BigDecimal
 import java.util.concurrent.Future
 
 class WalletModel(val apiClient: ApiClient) {
 
-//  val balance: LiveData<AccountBalance>
-//  val transactionHistory: LiveData<Tran>
+  //val balance: LiveData<AccountBalance> = LiveData<AccountBalance>()
+  //val transactionHistory: LiveData<Tran>
   
-//  fun currentBalance(): Future<AccountBalance> {
-//    doAsync {
-//      val reply = apiClient.checkBalance()
-//
-//    }
-//  }
+  fun currentBalance(): Future<AccountBalance> {
+    return doAsyncResult {
+      //val reply = apiClient.checkBalance()
+      //val bitcoin = CurrencyBalance("BTC", satoshisToBtc(reply.satoshis))
+
+      val bitcoin = CurrencyBalance("BTC", satoshisToBtc(100000))
+
+      AccountBalance(listOf(bitcoin))
+    }
+  }
+
+  private fun satoshisToBtc(satoshis: Long): BigDecimal {
+    return BigDecimal(satoshis).divide(BigDecimal(100_000_000))
+  }
 
 //  fun checkBalance(username: String, password: String): Future<Boolean> {
 ////    doAsync {

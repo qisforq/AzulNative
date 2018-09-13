@@ -18,15 +18,19 @@ class ApiClient constructor(host: String, port: Int) : AnkoLogger {
   fun login(username: String, password: String): LoginReply {
     val request = LoginRequest.newBuilder()
         .build()
-    val reply = stub.login(request)
-    return reply
+    return stub.login(request)
   }
   
   fun register(username: String, password: String): RegisterReply {
     val request = RegisterRequest.newBuilder()
         .build()
-    val reply = stub.register(request)
-    return reply
+    return stub.register(request)
+  }
+  
+  fun checkBalance(): CheckBalanceReply {
+    val request = CheckBalanceRequest.newBuilder()
+        .build()
+    return stub.checkBalance(request)
   }
 
   fun generateInvite(): String {

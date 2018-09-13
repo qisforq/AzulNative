@@ -1,59 +1,54 @@
 package azul.paleblue.foundation.azul.wallet
 
-import android.app.Activity
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
-import android.widget.TextView
+import android.widget.Button
+import android.widget.ListView
 import azul.paleblue.foundation.azul.AzulApplication
+import azul.paleblue.foundation.azul.R
 import azul.paleblue.foundation.azul.wallet.receive.RequestMoneyActivity
-import azul.paleblue.foundation.azul.wallet.send.ScannerActivity
 import azul.paleblue.foundation.azul.wallet.send.SendMoneyActivity
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk15.coroutines.onClick
+import android.widget.ArrayAdapter
+
 
 class WalletActivity : FragmentActivity() {
-  
-    lateinit var model: WalletModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
 
-        val app = application as AzulApplication
-        model = app.walletModel
-    
-//        val viewModel = ViewModelProviders.of(this).get(WalletViewModel::class.java)
-//        viewModel.model = model
+    val viewModel = ViewModelProviders.of(this).get(WalletViewModel::class.java)
+    val app = application as AzulApplication
+    viewModel.model = app.walletModel
 
-      var currentBalance: TextView? = null
+    setContentView(R.layout.activity_wallet)
 
-        verticalLayout {
-          padding = dip(30)
-          
-          textView("Wallet Activity")
-          
-          linearLayout {
-            textView("Current Balance:")
-            currentBalance = textView()
-          }
-
-          button("Transaction History") {
-              onClick {
-                  startActivity<TransactionHistoryActivity>()
-              }
-          }
-          button("Request Money") {
-              onClick {
-                  startActivity<RequestMoneyActivity>()
-              }
-          }
-          button("Send Money") {
-              onClick {
-                  startActivity<SendMoneyActivity>()
-              }
-          }
-        }
-
-        currentBalance!!.text = "1M BTC"
+    find<Button>(R.id.transactionHistory).onClick {
+      startActivity<TransactionHistoryActivity>()
     }
+
+    find<Button>(R.id.requestMoney).onClick {
+      startActivity<RequestMoneyActivity>()
+    }
+
+    find<Button>(R.id.sendMoney).onClick {
+      startActivity<SendMoneyActivity>()
+    }
+
+    val balanceList = find<ListView>(R.id.balanceContainer)
+    val adapter = ArrayAdapter(this,
+        android.R.layout.simple_list_item_1, 
+        android.R.id.text1, 
+        viewModel.balance.value?.currencies ?: mutableListOf())
+    balanceList.adapter = adapter
+
+    viewModel.balance.observe(this, Observer { account ->
+      adapter.clear()
+      adapter.addAll(account!!.currencies)
+      adapter.notifyDataSetChanged()
+    })
+  }
 }
