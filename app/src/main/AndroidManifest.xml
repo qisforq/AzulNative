@@ -46,7 +46,7 @@
             android:name=".wallet.WalletActivity"
             android:label="Wallet" />
         <activity
-            android:name=".wallet.TransactionHistoryActivity"
+            android:name=".wallet.history.TransactionHistoryActivity"
             android:label="Tx History" />
         <activity
             android:name=".wallet.receive.RequestMoneyActivity"

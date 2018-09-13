@@ -13,6 +13,7 @@ import azul.paleblue.foundation.azul.wallet.send.SendMoneyActivity
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk15.coroutines.onClick
 import android.widget.ArrayAdapter
+import azul.paleblue.foundation.azul.wallet.history.TransactionHistoryActivity
 
 
 class WalletActivity : FragmentActivity() {

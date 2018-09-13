@@ -8,6 +8,7 @@ import azul.paleblue.foundation.azul.location.CurrentLocationGetter
 import azul.paleblue.foundation.azul.network.ApiClient
 import azul.paleblue.foundation.azul.push.PushModel
 import azul.paleblue.foundation.azul.wallet.WalletModel
+import azul.paleblue.foundation.azul.wallet.history.TransactionHistoryModel
 
 val host = "192.168.1.95"
 val port = 50051
@@ -22,6 +23,7 @@ class AzulApplication : Application() {
   val inviteFriendsModel = InviteModel(apiClient)
   val pushModel: PushModel = PushModel(apiClient)
   val walletModel = WalletModel(apiClient)
+  val transactionHistoryModel = TransactionHistoryModel(apiClient)
   
   lateinit var redeemInviteModel: RedeemInviteModel
 
