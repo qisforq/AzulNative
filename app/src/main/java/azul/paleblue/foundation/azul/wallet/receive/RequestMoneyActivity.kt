@@ -17,10 +17,7 @@ import com.google.zxing.common.BitMatrix
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk15.coroutines.onClick
 
-
 class RequestMoneyActivity : Activity(), AnkoLogger {
-
-  val QRcodeWidth = 200
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -84,38 +81,4 @@ class RequestMoneyActivity : Activity(), AnkoLogger {
     }
   }
 
-//  private fun encodeText(Value: String): Bitmap? {
-//    val bitMatrix: BitMatrix
-//
-//      bitMatrix = MultiFormatWriter().encode(
-//          Value,
-//          BarcodeFormat.QR_CODE,
-//          QRcodeWidth,
-//          QRcodeWidth
-//      )
-//
-//
-//    val bitMatrixWidth = bitMatrix.getWidth()
-//
-//    val bitMatrixHeight = bitMatrix.getHeight()
-//
-//    val pixels = IntArray(bitMatrixWidth * bitMatrixHeight)
-//
-//    for (y in 0 until bitMatrixHeight) {
-//      val offset = y * bitMatrixWidth
-//
-//      for (x in 0 until bitMatrixWidth) {
-//
-//        pixels[offset + x] = if (bitMatrix.get(x, y))
-//        //resources.getColor(R.color.black)
-//          0x000000.opaque
-//        else
-//          0xffffff.opaque
-//      }
-//    }
-//    val bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444)
-//
-//    bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight)
-//    return bitmap
-//  }
 }
