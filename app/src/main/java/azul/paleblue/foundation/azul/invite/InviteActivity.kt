@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentActivity
 import azul.paleblue.foundation.azul.AzulApplication
 import azul.paleblue.foundation.azul.R
 
-
 class InviteActivity : FragmentActivity(), AnkoLogger {
 
   lateinit var model: InviteModel
