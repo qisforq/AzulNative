@@ -3,6 +3,7 @@ package azul.paleblue.foundation.azul.invite
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import azul.paleblue.foundation.azul.persistence.InviteCodeStorage
 import org.jetbrains.anko.*
 
 class InstallReceiver: BroadcastReceiver(), AnkoLogger {

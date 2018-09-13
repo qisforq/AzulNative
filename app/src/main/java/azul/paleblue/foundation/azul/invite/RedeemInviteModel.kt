@@ -3,6 +3,7 @@ package azul.paleblue.foundation.azul.invite
 import android.location.Location
 import azul.paleblue.foundation.azul.location.CurrentLocationGetter
 import azul.paleblue.foundation.azul.network.ApiClient
+import azul.paleblue.foundation.azul.persistence.InviteCodeStorage
 import com.google.android.gms.tasks.OnSuccessListener
 import org.jetbrains.anko.*
 

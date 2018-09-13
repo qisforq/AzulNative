@@ -13,7 +13,7 @@ import azul.paleblue.foundation.azul.account.ProfileActivity
 import azul.paleblue.foundation.azul.account.RedeemInviteActivity
 import azul.paleblue.foundation.azul.network.TestNetworkActivity
 import android.content.Intent
-import azul.paleblue.foundation.azul.invite.InviteCodeStorage
+import azul.paleblue.foundation.azul.persistence.InviteCodeStorage
 
 
 class MainActivity : Activity(), AnkoLogger {

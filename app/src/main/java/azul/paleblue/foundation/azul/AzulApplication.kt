@@ -1,7 +1,7 @@
 package azul.paleblue.foundation.azul
 
 import android.app.Application
-import azul.paleblue.foundation.azul.invite.InviteCodeStorage
+import azul.paleblue.foundation.azul.persistence.InviteCodeStorage
 import azul.paleblue.foundation.azul.invite.InviteModel
 import azul.paleblue.foundation.azul.invite.RedeemInviteModel
 import azul.paleblue.foundation.azul.location.CurrentLocationGetter
