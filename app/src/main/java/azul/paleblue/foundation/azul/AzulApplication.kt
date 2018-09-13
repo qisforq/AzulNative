@@ -15,17 +15,23 @@ val port = 50051
 class AzulApplication : Application() {
 
   val apiClient: ApiClient = ApiClient(host, port)
-  val locationGetter = CurrentLocationGetter(this)
 
-  val inviteCodeStorage = InviteCodeStorage(this)
+  lateinit var locationGetter: CurrentLocationGetter
+  lateinit var inviteCodeStorage: InviteCodeStorage
 
   val inviteFriendsModel = InviteModel(apiClient)
-  val redeemInviteModel = RedeemInviteModel(apiClient, locationGetter, inviteCodeStorage)
   val pushModel: PushModel = PushModel(apiClient)
   val walletModel = WalletModel(apiClient)
+  
+  lateinit var redeemInviteModel: RedeemInviteModel
 
   override fun onCreate() {
     super.onCreate()
+
+    locationGetter = CurrentLocationGetter(this)
+    inviteCodeStorage = InviteCodeStorage(this)
+  
+    redeemInviteModel = RedeemInviteModel(apiClient, locationGetter, inviteCodeStorage)
   }
 
 }
