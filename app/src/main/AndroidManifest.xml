@@ -58,6 +58,7 @@
             android:name=".wallet.send.ScannerActivity"
             android:label="Scan" />
         <activity android:name=".account.RedeemInviteActivity" />
+        <activity android:name=".account.AuthActivity" />
 
         <service android:name=".push.PushService">
             <intent-filter>

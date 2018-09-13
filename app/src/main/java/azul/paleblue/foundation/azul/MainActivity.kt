@@ -10,7 +10,7 @@ import org.jetbrains.anko.sdk15.coroutines.onClick
 import android.view.MenuItem
 import azul.paleblue.foundation.azul.account.LoginActivity
 import azul.paleblue.foundation.azul.account.ProfileActivity
-import azul.paleblue.foundation.azul.account.RedeemInviteActivity
+import azul.paleblue.foundation.azul.account.AuthActivity
 import android.content.Intent
 import azul.paleblue.foundation.azul.persistence.KeyValueStore
 
@@ -32,7 +32,11 @@ class MainActivity : Activity(), AnkoLogger {
           startActivity<ProfileActivity>()
         }
       }
-
+      button("Login/Create Account") {
+          onClick {
+              startActivity<AuthActivity>()
+          }
+      }
       button("Wallet") {
         onClick {
           startActivity<WalletActivity>()
@@ -42,11 +46,6 @@ class MainActivity : Activity(), AnkoLogger {
       button("Invite Friends") {
         onClick {
           startActivity<InviteActivity>()
-        }
-      }
-      button("Redeem Invite") {
-        onClick {
-          startActivity<RedeemInviteActivity>()
         }
       }
     }
