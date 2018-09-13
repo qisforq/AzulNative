@@ -4,6 +4,7 @@ import android.app.Application
 import azul.paleblue.foundation.azul.persistence.KeyValueStore
 import azul.paleblue.foundation.azul.invite.InviteModel
 import azul.paleblue.foundation.azul.invite.RedeemInviteModel
+import azul.paleblue.foundation.azul.account.AccountModel
 import azul.paleblue.foundation.azul.location.CurrentLocationGetter
 import azul.paleblue.foundation.azul.network.ApiClient
 import azul.paleblue.foundation.azul.push.PushModel
@@ -25,6 +26,9 @@ class AzulApplication : Application() {
   lateinit var walletModel: WalletModel
   lateinit var transactionHistoryModel: TransactionHistoryModel
   lateinit var sendMoneyModel: SendMoneyModel
+  lateinit var accountModel: AccountModel
+
+  val inviteFriendsModel = InviteModel(apiClient)
 
   lateinit var redeemInviteModel: RedeemInviteModel
 
@@ -41,6 +45,7 @@ class AzulApplication : Application() {
     transactionHistoryModel = TransactionHistoryModel(apiClient)
     sendMoneyModel = SendMoneyModel(apiClient)
     redeemInviteModel = RedeemInviteModel(apiClient, locationGetter, keyValueStore)
+    accountModel = AccountModel(apiClient, keyValueStore)
   }
 
 }

@@ -2,24 +2,30 @@ package azul.paleblue.foundation.azul.account
 
 import android.app.Activity
 import android.os.Bundle
+import azul.paleblue.foundation.azul.AzulApplication
+import azul.paleblue.foundation.azul.invite.RedeemInviteModel
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk15.coroutines.onClick
 
 class LoginActivity: Activity(), AnkoLogger {
+  lateinit var model: AccountModel
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+
+    val app = application as AzulApplication
+    model = app.accountModel
 
     verticalLayout {
       padding = dip(30)
 
       textView("Login")
 
-      editText {
+      val username = editText {
         hint = "Name"
         textSize = 24f
       }
-      editText {
+      val password = editText {
         hint = "Password"
         textSize = 24f
       }
@@ -27,7 +33,10 @@ class LoginActivity: Activity(), AnkoLogger {
       button("Login") {
         onClick {
           info("Perform Login")
-          // TODO: Call API from here
+          model.login(
+                  username.text.toString(),
+                  password.text.toString()
+          )
         }
       }
 
