@@ -2,10 +2,11 @@ package azul.paleblue.foundation.azul.wallet.send
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import com.google.zxing.Result
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.verbose
+import org.jetbrains.anko.*
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 
 class ScannerActivity: Activity(), ZXingScannerView.ResultHandler, AnkoLogger {
@@ -30,11 +31,12 @@ class ScannerActivity: Activity(), ZXingScannerView.ResultHandler, AnkoLogger {
 
   override fun handleResult(rawResult: Result) {
     // Do something with the result here
-    verbose(rawResult.getText()) // Prints scan results
-    verbose(rawResult.getBarcodeFormat().toString()) // Prints the scan format (qrcode, pdf417 etc.)
+    debug(rawResult.getText()) // Prints scan results
+    debug(rawResult.getBarcodeFormat().toString()) // Prints the scan format (qrcode, pdf417 etc.)
+
 
     val intent = Intent()
-    intent.putExtra("barcodePayload", rawResult.text)
+    intent.putExtra("barcodeTextPayload", rawResult.text)
     intent.putExtra("barcodeFormat", rawResult.barcodeFormat.toString())
 
     setResult(1, intent)
