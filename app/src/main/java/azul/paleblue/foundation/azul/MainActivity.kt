@@ -32,11 +32,7 @@ class MainActivity : Activity(), AnkoLogger {
           startActivity<ProfileActivity>()
         }
       }
-      button("Redeem Invite") {
-          onClick {
-              startActivity<RedeemInviteActivity>()
-          }
-      }
+
       button("Wallet") {
         onClick {
           startActivity<WalletActivity>()
@@ -46,6 +42,11 @@ class MainActivity : Activity(), AnkoLogger {
       button("Invite Friends") {
         onClick {
           startActivity<InviteActivity>()
+        }
+      }
+      button("Redeem Invite") {
+        onClick {
+          startActivity<RedeemInviteActivity>()
         }
       }
     }
