@@ -27,7 +27,7 @@ class LoginActivity: Activity(), AnkoLogger {
         textSize = 24f
         maxLines = 1
       }
-      val password = editText {
+      val password = editText(InputConstraints.PASSWORD) {
         hint = "Password"
         textSize = 24f
         maxLines = 1
