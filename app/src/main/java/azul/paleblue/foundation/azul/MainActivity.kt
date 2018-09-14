@@ -11,7 +11,6 @@ import android.view.MenuItem
 import azul.paleblue.foundation.azul.account.LoginActivity
 import azul.paleblue.foundation.azul.account.ProfileActivity
 import azul.paleblue.foundation.azul.account.RedeemInviteActivity
-import azul.paleblue.foundation.azul.network.TestNetworkActivity
 import android.content.Intent
 import azul.paleblue.foundation.azul.persistence.KeyValueStore
 
@@ -27,11 +26,6 @@ class MainActivity : Activity(), AnkoLogger {
       padding = dip(30)
       textView("Main Activity")
 
-      button("Test Network") {
-        onClick {
-          startActivity<TestNetworkActivity>()
-        }
-      }
       button("Go to Profile Activity") {
         onClick {
           toast("Entering Profile activity")

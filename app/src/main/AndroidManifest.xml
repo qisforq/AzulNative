@@ -57,9 +57,6 @@
         <activity
             android:name=".wallet.send.ScannerActivity"
             android:label="Scan" />
-        <activity
-            android:name=".network.TestNetworkActivity"
-            android:label="Test Network" />
         <activity android:name=".account.RedeemInviteActivity" />
 
         <service android:name=".push.PushService">
