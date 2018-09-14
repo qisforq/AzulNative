@@ -16,7 +16,7 @@ class AccountModel(val apiClient: ApiClient, val kvStore: KeyValueStore) {
     return when (reply.status) {
       LoginReplyStatus.LOGIN_FAILURE -> false
       LoginReplyStatus.LOGIN_SUCCESS -> {
-        storeSessionToken(username, reply.sessionToken)
+        kvStore.storeSessionToken(reply.sessionToken)
         true
       }
       else -> {
@@ -25,18 +25,13 @@ class AccountModel(val apiClient: ApiClient, val kvStore: KeyValueStore) {
     }
   }
 
-  private fun storeSessionToken(username: String, sessionToken: String)  {
-    // Should we also store the username?'
-    kvStore.storeSessionToken(sessionToken)
-  }
-
   fun register(username: String, password: String): Future<RegisterReply> {
     return doAsyncResult {
       val reply = apiClient.register(username, password)
 
       when (reply.status) {
         RegisterReplyStatus.SUCCESS -> {
-          storeSessionToken(username, reply.sessionToken)
+          kvStore.storeSessionToken(reply.sessionToken)
         }
         else -> {
           throw RuntimeException("Unknown register reply status!")
