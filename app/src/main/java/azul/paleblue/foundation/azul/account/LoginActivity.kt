@@ -3,6 +3,7 @@ package azul.paleblue.foundation.azul.account
 import android.app.Activity
 import android.os.Bundle
 import azul.paleblue.foundation.azul.AzulApplication
+import azul.paleblue.foundation.azul.MainActivity
 import azul.paleblue.foundation.azul.invite.RedeemInviteModel
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk15.coroutines.onClick
@@ -43,6 +44,7 @@ class LoginActivity: Activity(), AnkoLogger {
             uiThread {
               if (authorized) {
                 toast("Login Succeeded")
+                startActivity<MainActivity>()
               } else {
                 toast("Login failed")
               }

@@ -10,7 +10,6 @@ import org.jetbrains.anko.sdk15.coroutines.onClick
 import android.view.MenuItem
 import azul.paleblue.foundation.azul.account.LoginActivity
 import azul.paleblue.foundation.azul.account.ProfileActivity
-import azul.paleblue.foundation.azul.account.AuthActivity
 import android.content.Intent
 import azul.paleblue.foundation.azul.persistence.KeyValueStore
 
@@ -31,11 +30,6 @@ class MainActivity : Activity(), AnkoLogger {
           toast("Entering Profile activity")
           startActivity<ProfileActivity>()
         }
-      }
-      button("Login/Create Account") {
-          onClick {
-              startActivity<AuthActivity>()
-          }
       }
       button("Wallet") {
         onClick {
