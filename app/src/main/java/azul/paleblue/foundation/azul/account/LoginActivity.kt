@@ -35,10 +35,19 @@ class LoginActivity: Activity(), AnkoLogger {
       button("Login") {
         onClick {
           info("Perform Login")
-          model.login(
-                  username.text.toString(),
-                  password.text.toString()
-          )
+          doAsync {
+            val authorized = model.login(
+                    username.text.toString(),
+                    password.text.toString()
+            )
+            uiThread {
+              if (authorized) {
+                toast("Login Succeeded")
+              } else {
+                toast("Login failed")
+              }
+            }
+          }
         }
       }
 

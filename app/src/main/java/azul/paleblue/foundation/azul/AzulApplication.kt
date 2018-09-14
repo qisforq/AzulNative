@@ -12,7 +12,7 @@ import azul.paleblue.foundation.azul.wallet.WalletModel
 import azul.paleblue.foundation.azul.wallet.history.TransactionHistoryModel
 import azul.paleblue.foundation.azul.wallet.send.SendMoneyModel
 
-val host = "192.168.1.95"
+val host = "192.168.0.56"
 val port = 5001
 
 class AzulApplication : Application() {
