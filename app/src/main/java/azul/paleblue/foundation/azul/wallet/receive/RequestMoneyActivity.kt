@@ -6,7 +6,9 @@ import android.graphics.Color.BLACK
 import android.graphics.Color.WHITE
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import azul.paleblue.foundation.azul.R
 import com.google.zxing.BarcodeFormat
@@ -19,17 +21,32 @@ import org.jetbrains.anko.sdk15.coroutines.onClick
 
 class RequestMoneyActivity : Activity(), AnkoLogger {
 
+  lateinit var imageView: ImageView
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
     setContentView(R.layout.activity_request_money)
 
+    imageView = findViewById<ImageView>(R.id.qrCode)
+    
+    val amountEdit  = findViewById<EditText>(R.id.amount)
+    val messageEdit = findViewById<EditText>(R.id.message)
+
     findViewById<Button>(R.id.makeQrCode).onClick {
-      makeQrCode(findViewById<ImageView>(R.id.qrCode))
+      val uri = makeUri(
+          "myAddress",
+          amountEdit.text.toString(),
+          "Alice",
+          messageEdit.text.toString(),
+          "http://paleblue.foundation/payment/1234"
+      )
+
+      showQrCode(uri)
     }
   }
 
-  val requestMoneyUri = "bitcoin:mjSk1Ny9spzU2fouzYgLqGUD8U41iR35QN?amount=0.10&label=Example+Merchant&message=Order+of+flowers+%26+chocolates&r=https://example.com/pay/mjSk1Ny9spzU2fouzYgLqGUD8U41iR35QN"
+  // val requestMoneyUri = "bitcoin:mjSk1Ny9spzU2fouzYgLqGUD8U41iR35QN?amount=0.10&label=Example+Merchant&message=Order+of+flowers+%26+chocolates&r=https://example.com/pay/mjSk1Ny9spzU2fouzYgLqGUD8U41iR35QN"
 
   fun makeUri(walletAddress: String, amount: String, label: String, message: String, requestUrl: String): Uri {
     return Uri.Builder().path(walletAddress)
@@ -40,8 +57,8 @@ class RequestMoneyActivity : Activity(), AnkoLogger {
         .build()
   }
 
-  fun makeQrCode(imageView: ImageView) {
-    val bitmap = encodeText(requestMoneyUri, Dimension(imageView.width, imageView.height))
+  fun showQrCode(uri: Uri) {
+    val bitmap = encodeText(uri.toString(), Dimension(imageView.width, imageView.height))
     if (bitmap == null) {
       error("Bitmap was null!")
     } else {
