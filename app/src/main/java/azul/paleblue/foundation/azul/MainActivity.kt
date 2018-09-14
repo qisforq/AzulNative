@@ -36,12 +36,6 @@ class MainActivity : Activity(), AnkoLogger {
           startActivity<WalletActivity>()
         }
       }
-
-      button("Invite Friends") {
-        onClick {
-          startActivity<InviteActivity>()
-        }
-      }
     }
   }
 
