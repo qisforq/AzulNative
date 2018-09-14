@@ -2,7 +2,6 @@ package azul.paleblue.foundation.azul.wallet.send
 
 import android.app.Activity
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -10,7 +9,6 @@ import azul.paleblue.foundation.azul.AzulApplication
 import azul.paleblue.foundation.azul.R
 import com.sandro.bitcoinpaymenturi.BitcoinPaymentURI
 import org.jetbrains.anko.*
-import org.jetbrains.anko.sdk15.coroutines.onClick
 
 class SendMoneyActivity : Activity(), AnkoLogger {
   
@@ -54,13 +52,13 @@ class SendMoneyActivity : Activity(), AnkoLogger {
   }
 
   fun handleUri(uri: String) {
-    val bitcoinPaymentURI = BitcoinPaymentURI.parse(uri)
+    val bitcoinPaymentUri = BitcoinPaymentURI.parse(uri)
 
-    bitcoinPaymentURI.getAddress()
-    bitcoinPaymentURI.getAmount()
-    bitcoinPaymentURI.getLabel()
-    bitcoinPaymentURI.getMessage()
-    bitcoinPaymentURI.getParameters().size
+    bitcoinPaymentUri.getAddress()
+    bitcoinPaymentUri.getAmount()
+    bitcoinPaymentUri.getLabel()
+    bitcoinPaymentUri.getMessage()
+    bitcoinPaymentUri.getParameters().size
 
     info("Uri handled")
   }
