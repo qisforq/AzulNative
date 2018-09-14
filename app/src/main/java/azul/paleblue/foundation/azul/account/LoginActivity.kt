@@ -24,10 +24,12 @@ class LoginActivity: Activity(), AnkoLogger {
       val username = editText {
         hint = "Name"
         textSize = 24f
+        maxLines = 1
       }
       val password = editText {
         hint = "Password"
         textSize = 24f
+        maxLines = 1
       }
 
       button("Login") {

@@ -23,7 +23,7 @@ class ApiClient constructor(val keyValueStore: KeyValueStore, host: String, port
   fun login(username: String, password: String): LoginReply {
     val request = LoginRequest.newBuilder()
         .build()
-    return stub.login(request)
+    return stub.userLogin(request)
   }
   
   fun register(username: String, password: String): RegisterReply {

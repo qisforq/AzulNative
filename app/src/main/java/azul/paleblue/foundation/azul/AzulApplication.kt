@@ -27,8 +27,8 @@ class AzulApplication : Application() {
   lateinit var transactionHistoryModel: TransactionHistoryModel
   lateinit var sendMoneyModel: SendMoneyModel
   lateinit var accountModel: AccountModel
+  lateinit var inviteFriendsModel: InviteModel
 
-  val inviteFriendsModel = InviteModel(apiClient)
 
   lateinit var redeemInviteModel: RedeemInviteModel
 
@@ -46,6 +46,9 @@ class AzulApplication : Application() {
     sendMoneyModel = SendMoneyModel(apiClient)
     redeemInviteModel = RedeemInviteModel(apiClient, locationGetter, keyValueStore)
     accountModel = AccountModel(apiClient, keyValueStore)
+
+    inviteFriendsModel = InviteModel(apiClient)
+
   }
 
 }
