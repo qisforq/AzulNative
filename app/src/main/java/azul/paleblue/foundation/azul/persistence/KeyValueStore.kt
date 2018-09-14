@@ -6,10 +6,19 @@ val prefsPath = "foundation.paleblue.azul"
 
 class KeyValueStore(val context: Context) {
 
-  val inviteKey  = "INVITE_CODE"
-  val sessionKey = "SESSION"
+  val inviteKey    = "INVITE_CODE"
+  val pushTokenKey = "PUSH_TOKEN"
+  val sessionKey   = "SESSION"
 
   val preferences = context.getSharedPreferences(prefsPath, Context.MODE_PRIVATE)
+  
+  fun storePushToken(pushToken: String) {
+    preferences.edit().putString(pushTokenKey, pushToken).apply()
+  }
+
+  fun getPushToken(): String? {
+    return preferences.getString(pushTokenKey, null)
+  }
 
   fun storeCode(code: String) {
     preferences.edit().putString(inviteKey, code).apply()

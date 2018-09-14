@@ -1,0 +1,45 @@
+{
+  "project_info": {
+    "project_number": "372676148757",
+    "firebase_url": "https://azul-dev.firebaseio.com",
+    "project_id": "azul-dev",
+    "storage_bucket": "azul-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372676148757:android:3617de6f5dd2f542",
+        "android_client_info": {
+          "package_name": "azul.paleblue.foundation.azul"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "372676148757-v70p0fa1b4ru2a4a9ns5i1213l5h7s51.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-cThHJqMELWnan-rUL1h4YlI9IdtZRGs"
+        },
+        {
+          "current_key": "AIzaSyA-cThHJqMELWnan-rUL1h4YlI9IdtZRGs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

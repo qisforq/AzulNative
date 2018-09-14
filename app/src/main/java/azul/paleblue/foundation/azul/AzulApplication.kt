@@ -11,6 +11,7 @@ import azul.paleblue.foundation.azul.push.PushModel
 import azul.paleblue.foundation.azul.wallet.WalletModel
 import azul.paleblue.foundation.azul.wallet.history.TransactionHistoryModel
 import azul.paleblue.foundation.azul.wallet.send.SendMoneyModel
+import com.google.firebase.FirebaseApp
 
 class AzulApplication : Application() {
 
@@ -32,12 +33,14 @@ class AzulApplication : Application() {
   override fun onCreate() {
     super.onCreate()
 
+    FirebaseApp.initializeApp(this)
+
     locationGetter = CurrentLocationGetter(this)
     keyValueStore = KeyValueStore(this)
 
     apiClient = ApiClient(keyValueStore, BuildConfig.API_HOST, BuildConfig.API_PORT)
     inviteModel = InviteModel(apiClient)
-    pushModel = PushModel(apiClient)
+    pushModel = PushModel(apiClient, keyValueStore)
     walletModel = WalletModel(apiClient)
     transactionHistoryModel = TransactionHistoryModel(apiClient)
     sendMoneyModel = SendMoneyModel(apiClient)

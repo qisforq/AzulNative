@@ -2,9 +2,12 @@ package azul.paleblue.foundation.azul.push
 
 import azul.paleblue.foundation.azul.AzulApplication
 import azul.paleblue.foundation.azul.network.ApiClient
+import com.google.android.gms.tasks.Task
 import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.iid.InstanceIdResult
 import com.google.firebase.messaging.*
 import org.jetbrains.anko.*
+import java.util.concurrent.Future
 
 
 class PushService : FirebaseMessagingService(), AnkoLogger {
@@ -14,11 +17,6 @@ class PushService : FirebaseMessagingService(), AnkoLogger {
   override fun onCreate() {
     val app = application as AzulApplication
     pushModel = app.pushModel
-  }
-
-  // TODO: We may need to invoke this on app install in order to properly pass the push token to the server
-  fun getCurrentToken() {
-    FirebaseInstanceId.getInstance().getInstanceId()
   }
 
   /**

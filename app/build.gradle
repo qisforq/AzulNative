@@ -108,7 +108,7 @@ dependencies {
   implementation "org.jetbrains.anko:anko-coroutines:$anko_version"
 
   // Push
-  implementation 'com.google.firebase:firebase-messaging:17.3.0'
+  implementation 'com.google.firebase:firebase-messaging:17.3.1'
 
   // gRPC-java
   // You need to build grpc-java to obtain these libraries below.
@@ -137,6 +137,8 @@ dependencies {
 
   // Location
   implementation "com.google.android.gms:play-services-location:15.0.1"
+  // Push
+  implementation 'com.google.firebase:firebase-core:16.0.3'
 
     // Core
   implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -147,3 +149,4 @@ dependencies {
   androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
 
+apply plugin: 'com.google.gms.google-services'
