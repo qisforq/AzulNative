@@ -23,6 +23,10 @@ class KeyValueStore(val context: Context) {
     preferences.edit().putString(sessionKey, code).apply()
   }
 
+  fun clearSessionToken() {
+    preferences.edit().putString(sessionKey, null).apply()
+  }
+
   fun getSessionToken(): String? {
     return preferences.getString(sessionKey, null)
   }

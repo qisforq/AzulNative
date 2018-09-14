@@ -46,14 +46,15 @@ class MainActivity : Activity(), AnkoLogger {
   }
 
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-    when (item?.getItemId()) {
+    return when (item?.getItemId()) {
       R.id.invite -> {
         startActivity<InviteActivity>()
-        return true
+        true
       }
-      R.id.login -> {
-        startActivity<LoginActivity>()
-        return true
+      R.id.logout -> {
+        KeyValueStore(this).clearSessionToken()
+        finish()
+        true
       }
       else -> return super.onOptionsItemSelected(item)
     }
