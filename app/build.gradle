@@ -38,9 +38,15 @@ android {
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
   }
   buildTypes {
+    debug {
+      buildConfigField 'String', 'API_HOST', "\"${getIp()}\""
+      buildConfigField 'int', 'API_PORT', '8080'
+    }
     release {
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+      buildConfigField 'String', 'API_HOST', '"azul.paleblue.foundation"'
+      buildConfigField 'int', 'API_PORT', '8080'
     }
   }
 }
@@ -65,6 +71,24 @@ protobuf {
   }
 }
 
+def getIp() {
+  InetAddress result = null;
+  Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+  while (interfaces.hasMoreElements()) {
+    Enumeration<InetAddress> addresses = interfaces.nextElement().getInetAddresses();
+    while (addresses.hasMoreElements()) {
+      InetAddress address = addresses.nextElement();
+      if (!address.isLoopbackAddress()) {
+        if (address.isSiteLocalAddress()) {
+          return address.getHostAddress();
+        } else if (result == null) {
+          result = address;
+        }
+      }
+    }
+  }
+  return (result != null ? result : InetAddress.getLocalHost()).getHostAddress();
+}
 
 dependencies {
   def anko_version = "0.10.5"

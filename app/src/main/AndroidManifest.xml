@@ -12,27 +12,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".MainActivity"
-            android:label="Azul">
+        <activity android:name=".AuthActivity" android:label="Azul">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-              </intent-filter>
+            </intent-filter>
 
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="http"
-                      android:host="paleblue.foundation"
-                      android:pathPrefix="/invite/" />
+                    android:host="paleblue.foundation"
+                    android:pathPrefix="/invite/" />
                 <data android:scheme="http"
-                      android:host="www.paleblue.foundation"
-                      android:pathPrefix="/invite/" />
+                    android:host="www.paleblue.foundation"
+                    android:pathPrefix="/invite/" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".invite.InviteActivity"
             android:label="My Activity Title" />

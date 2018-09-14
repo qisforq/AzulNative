@@ -10,7 +10,6 @@ import org.jetbrains.anko.sdk15.coroutines.onClick
 import android.view.MenuItem
 import azul.paleblue.foundation.azul.account.LoginActivity
 import azul.paleblue.foundation.azul.account.ProfileActivity
-import azul.paleblue.foundation.azul.account.RedeemInviteActivity
 import android.content.Intent
 import azul.paleblue.foundation.azul.persistence.KeyValueStore
 
@@ -32,21 +31,9 @@ class MainActivity : Activity(), AnkoLogger {
           startActivity<ProfileActivity>()
         }
       }
-
       button("Wallet") {
         onClick {
           startActivity<WalletActivity>()
-        }
-      }
-
-      button("Invite Friends") {
-        onClick {
-          startActivity<InviteActivity>()
-        }
-      }
-      button("Redeem Invite") {
-        onClick {
-          startActivity<RedeemInviteActivity>()
         }
       }
     }
@@ -59,14 +46,15 @@ class MainActivity : Activity(), AnkoLogger {
   }
 
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-    when (item?.getItemId()) {
+    return when (item?.getItemId()) {
       R.id.invite -> {
         startActivity<InviteActivity>()
-        return true
+        true
       }
-      R.id.login -> {
-        startActivity<LoginActivity>()
-        return true
+      R.id.logout -> {
+        KeyValueStore(this).clearSessionToken()
+        finish()
+        true
       }
       else -> return super.onOptionsItemSelected(item)
     }

@@ -26,26 +26,25 @@ class RedeemInviteActivity : Activity(), AnkoLogger {
       val username = editText {
         hint = "Name"
         textSize = 24f
+        maxLines = 1
       }
-      val password = editText {
+      val password = editText(InputConstraints.PASSWORD) {
         hint = "Password"
         textSize = 24f
+        maxLines = 1
       }
       val inviteCode = editText {
         setText(model.inviteCode)
         hint = "Invite Code"
         textSize = 24f
+        maxLines = 1
       }
       button("Register") {
         textSize = 26f
         onClick {
-          println(inviteCode.text.toString())
-          println(username.text.toString())
-          println(password.text.toString())
           model.redeemInvite(
               username.text.toString(),
               password.text.toString())
-
         }
       }
     }

@@ -10,27 +10,19 @@ import java.util.concurrent.Future
 
 class AccountModel(val apiClient: ApiClient, val kvStore: KeyValueStore) {
 
-  fun login(username: String, password: String): Future<Boolean> {
-    return doAsyncResult {
-      val reply = apiClient.login(username, password)
+  fun login(username: String, password: String): Boolean {
+    val reply = apiClient.login(username, password)
 
-      when (reply.status) {
-        LoginReplyStatus.LOGIN_FAILURE -> false
-        LoginReplyStatus.LOGIN_SUCCESS -> {
-          storeSessionToken(username, reply.sessionToken)
-          true
-        }
-        else -> {
-          throw RuntimeException("Unknown login reply status!")
-        }
+    return when (reply.status) {
+      LoginReplyStatus.LOGIN_FAILURE -> false
+      LoginReplyStatus.LOGIN_SUCCESS -> {
+        kvStore.storeSessionToken(reply.sessionToken)
+        true
       }
-      false
+      else -> {
+        throw RuntimeException("Unknown login reply status!")
+      }
     }
-  }
-
-  private fun storeSessionToken(username: String, sessionToken: String)  {
-    // Should we also store the username?'
-    kvStore.storeSessionToken(sessionToken)
   }
 
   fun register(username: String, password: String): Future<RegisterReply> {
@@ -39,7 +31,7 @@ class AccountModel(val apiClient: ApiClient, val kvStore: KeyValueStore) {
 
       when (reply.status) {
         RegisterReplyStatus.SUCCESS -> {
-          storeSessionToken(username, reply.sessionToken)
+          kvStore.storeSessionToken(reply.sessionToken)
         }
         else -> {
           throw RuntimeException("Unknown register reply status!")

@@ -5,6 +5,7 @@ import android.os.Bundle
 import org.jetbrains.anko.*
 import azul.paleblue.foundation.azul.location.CurrentLocationGetter
 import azul.paleblue.foundation.azul.network.ApiClient
+import azul.paleblue.foundation.azul.persistence.KeyValueStore
 import com.google.android.gms.tasks.OnSuccessListener
 import org.jetbrains.anko.sdk15.coroutines.onClick
 
@@ -15,9 +16,12 @@ class ProfileActivity : Activity(), AnkoLogger {
         super.onCreate(savedInstanceState)
 
         val locationGetter = CurrentLocationGetter(this)
+        val token = KeyValueStore(this).getSessionToken()
 
         verticalLayout {
-          button("Send Location") {
+            padding = dip(30)
+            textView("Session Token: ${token}")
+            button("Send Location") {
               onClick {
                   locationGetter.getCurrentLocation(OnSuccessListener {
                       toast("location retrieved")
