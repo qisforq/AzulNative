@@ -26,7 +26,7 @@ class MainActivity : Activity(), AnkoLogger {
       padding = dip(30)
       textView("Main Activity")
 
-      button("Go to Profile Activity") {
+      button("Profile") {
         onClick {
           toast("Entering Profile activity")
           startActivity<ProfileActivity>()
