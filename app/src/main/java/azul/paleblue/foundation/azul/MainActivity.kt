@@ -13,7 +13,7 @@ import azul.paleblue.foundation.azul.account.ProfileActivity
 import azul.paleblue.foundation.azul.account.RedeemInviteActivity
 import azul.paleblue.foundation.azul.network.TestNetworkActivity
 import android.content.Intent
-import azul.paleblue.foundation.azul.persistence.InviteCodeStorage
+import azul.paleblue.foundation.azul.persistence.KeyValueStore
 
 
 class MainActivity : Activity(), AnkoLogger {
@@ -84,7 +84,7 @@ class MainActivity : Activity(), AnkoLogger {
         val inviteCode = segments[1]
         info("Invite code was: $inviteCode")
         if (inviteCode != null) {
-          InviteCodeStorage(this).storeCode(inviteCode)
+          KeyValueStore(this).storeCode(inviteCode)
         }
       }
     }

@@ -1,15 +1,14 @@
 package azul.paleblue.foundation.azul.account
 
 import azul.paleblue.foundation.azul.network.ApiClient
-import azul.paleblue.foundation.azul.persistence.InviteCodeStorage
-import foundation.paleblue.azul.proto.LoginReply
+import azul.paleblue.foundation.azul.persistence.KeyValueStore
 import foundation.paleblue.azul.proto.LoginReply.LoginReplyStatus
 import foundation.paleblue.azul.proto.RegisterReply
 import foundation.paleblue.azul.proto.RegisterReply.RegisterReplyStatus
 import org.jetbrains.anko.doAsyncResult
 import java.util.concurrent.Future
 
-class AccountModel(val apiClient: ApiClient, val kvStore: InviteCodeStorage) {
+class AccountModel(val apiClient: ApiClient, val kvStore: KeyValueStore) {
 
   fun login(username: String, password: String): Future<Boolean> {
     return doAsyncResult {

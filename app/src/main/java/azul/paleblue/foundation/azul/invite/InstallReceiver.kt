@@ -3,7 +3,7 @@ package azul.paleblue.foundation.azul.invite
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import azul.paleblue.foundation.azul.persistence.InviteCodeStorage
+import azul.paleblue.foundation.azul.persistence.KeyValueStore
 import org.jetbrains.anko.*
 
 class InstallReceiver: BroadcastReceiver(), AnkoLogger {
@@ -13,7 +13,7 @@ class InstallReceiver: BroadcastReceiver(), AnkoLogger {
       val referrer = intent.extras.getString("referrer")
       val inviteCode = intent.extras.getString("inviteCode")
       info("InstallReceiver got install with referrer: $referrer and code: $inviteCode")
-      InviteCodeStorage(context!!).storeCode(inviteCode)
+      KeyValueStore(context!!).storeCode(inviteCode)
     }
   }
 

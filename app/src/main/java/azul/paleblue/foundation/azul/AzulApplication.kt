@@ -1,7 +1,7 @@
 package azul.paleblue.foundation.azul
 
 import android.app.Application
-import azul.paleblue.foundation.azul.persistence.InviteCodeStorage
+import azul.paleblue.foundation.azul.persistence.KeyValueStore
 import azul.paleblue.foundation.azul.invite.InviteModel
 import azul.paleblue.foundation.azul.invite.RedeemInviteModel
 import azul.paleblue.foundation.azul.location.CurrentLocationGetter
@@ -9,32 +9,38 @@ import azul.paleblue.foundation.azul.network.ApiClient
 import azul.paleblue.foundation.azul.push.PushModel
 import azul.paleblue.foundation.azul.wallet.WalletModel
 import azul.paleblue.foundation.azul.wallet.history.TransactionHistoryModel
+import azul.paleblue.foundation.azul.wallet.send.SendMoneyModel
 
 val host = "192.168.1.95"
 val port = 50051
 
 class AzulApplication : Application() {
 
-  val apiClient: ApiClient = ApiClient(host, port)
-
   lateinit var locationGetter: CurrentLocationGetter
-  lateinit var inviteCodeStorage: InviteCodeStorage
+  lateinit var keyValueStore: KeyValueStore
 
-  val inviteFriendsModel = InviteModel(apiClient)
-  val pushModel: PushModel = PushModel(apiClient)
-  val walletModel = WalletModel(apiClient)
-  val transactionHistoryModel = TransactionHistoryModel(apiClient)
-  val sendMoneyModel = SendMoneyModel(apiClient)
-  
+  lateinit var apiClient: ApiClient
+  lateinit var pushModel: PushModel
+  lateinit var inviteModel: InviteModel
+  lateinit var walletModel: WalletModel
+  lateinit var transactionHistoryModel: TransactionHistoryModel
+  lateinit var sendMoneyModel: SendMoneyModel
+
   lateinit var redeemInviteModel: RedeemInviteModel
 
   override fun onCreate() {
     super.onCreate()
 
     locationGetter = CurrentLocationGetter(this)
-    inviteCodeStorage = InviteCodeStorage(this)
-  
-    redeemInviteModel = RedeemInviteModel(apiClient, locationGetter, inviteCodeStorage)
+    keyValueStore = KeyValueStore(this)
+
+    apiClient = ApiClient(keyValueStore, host, port)
+    inviteModel = InviteModel(apiClient)
+    pushModel = PushModel(apiClient)
+    walletModel = WalletModel(apiClient)
+    transactionHistoryModel = TransactionHistoryModel(apiClient)
+    sendMoneyModel = SendMoneyModel(apiClient)
+    redeemInviteModel = RedeemInviteModel(apiClient, locationGetter, keyValueStore)
   }
 
 }

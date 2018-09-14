@@ -25,9 +25,9 @@ class ProfileActivity : Activity(), AnkoLogger {
                           println(it.latitude)
                           println(it.longitude)
                           doAsync {
-                              val apiClient = ApiClient("192.168.1.95", 50051)
-                              val response = apiClient.redeemInvite("12345", it)
-                              info("response: $response")
+//                              val apiClient = ApiClient("192.168.1.95", 50051)
+//                              val response = apiClient.redeemInvite("12345", it)
+//                              info("response: $response")
                           }
                       } else {
                           println("No location data available")

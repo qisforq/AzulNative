@@ -15,7 +15,7 @@ class InviteActivity : FragmentActivity(), AnkoLogger {
     super.onCreate(savedInstanceState)
 
     val app = application as AzulApplication
-    model = app.inviteFriendsModel
+    model = app.inviteModel
 
     val viewModel = ViewModelProviders.of(this).get(InviteViewModel::class.java)
     viewModel.model = model

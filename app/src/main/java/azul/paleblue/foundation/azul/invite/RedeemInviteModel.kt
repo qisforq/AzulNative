@@ -3,11 +3,11 @@ package azul.paleblue.foundation.azul.invite
 import android.location.Location
 import azul.paleblue.foundation.azul.location.CurrentLocationGetter
 import azul.paleblue.foundation.azul.network.ApiClient
-import azul.paleblue.foundation.azul.persistence.InviteCodeStorage
+import azul.paleblue.foundation.azul.persistence.KeyValueStore
 import com.google.android.gms.tasks.OnSuccessListener
 import org.jetbrains.anko.*
 
-class RedeemInviteModel(val apiClient: ApiClient, val locationGetter: CurrentLocationGetter, val inviteCodeStorage: InviteCodeStorage): AnkoLogger
+class RedeemInviteModel(val apiClient: ApiClient, val locationGetter: CurrentLocationGetter, val keyValueStore: KeyValueStore): AnkoLogger
 {
   val inviteCode: String = "EXAMPLE"
   var location: Location? = null

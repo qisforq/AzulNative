@@ -4,7 +4,7 @@ import android.content.Context
 
 val prefsPath = "foundation.paleblue.azul"
 
-class InviteCodeStorage(val context: Context) {
+class KeyValueStore(val context: Context) {
 
   val inviteKey  = "INVITE_CODE"
   val sessionKey = "SESSION"

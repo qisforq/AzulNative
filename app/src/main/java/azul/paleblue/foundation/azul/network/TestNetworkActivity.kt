@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.text.Editable
 import azul.paleblue.foundation.azul.network.ApiClient
+import azul.paleblue.foundation.azul.persistence.KeyValueStore
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk15.coroutines.onClick
 
@@ -17,6 +18,8 @@ class TestNetworkActivity : Activity(), AnkoLogger {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val kvStore = KeyValueStore(this)
 
         verticalLayout {
             padding = dip(30)
@@ -39,7 +42,7 @@ class TestNetworkActivity : Activity(), AnkoLogger {
                     toast("Sending Invite")
                     doAsync {
                         info("Sending invite")
-                        val apiClient = ApiClient(host.text.toString(), Integer.parseInt(port.text.toString()))
+                        val apiClient = ApiClient(kvStore, host.text.toString(), Integer.parseInt(port.text.toString()))
                         val response = apiClient.sendMessage(name.text.toString())
                         info("Invite response received: $response")
                         toast(response)

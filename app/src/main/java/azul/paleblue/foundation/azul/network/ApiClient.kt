@@ -1,14 +1,19 @@
 package azul.paleblue.foundation.azul.network
 
 import android.location.Location
+import azul.paleblue.foundation.azul.persistence.KeyValueStore
 import io.grpc.ManagedChannel
 import io.grpc.ManagedChannelBuilder
 import foundation.paleblue.azul.proto.*
 import org.jetbrains.anko.*
 
-class ApiClient constructor(host: String, port: Int) : AnkoLogger {
+class ApiClient constructor(val keyValueStore: KeyValueStore, host: String, port: Int) : AnkoLogger {
   private val channel: ManagedChannel
   private val stub: AzulGrpc.AzulBlockingStub
+  private val sessionToken: String?
+  get() {
+    return keyValueStore.getSessionToken()
+  }
 
   init {
     channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build()
@@ -29,12 +34,23 @@ class ApiClient constructor(host: String, port: Int) : AnkoLogger {
   
   fun checkBalance(): CheckBalanceReply {
     val request = CheckBalanceRequest.newBuilder()
+    .setSessionToken(sessionToken)
         .build()
     return stub.checkBalance(request)
+  }
+  
+  fun sendMoney(destination: String, satoshis: Long): SendMoneyReply {
+    val request = SendMoneyRequest.newBuilder()
+        .setSessionToken(sessionToken)
+        .setDestination(destination)
+        .setSatoshis(satoshis)
+        .build()
+    return stub.sendMoney(request)
   }
 
   fun generateInvite(): String {
     val request = GenerateInviteRequest.newBuilder()
+        .setSessionToken(sessionToken)
         .build()
     val reply = stub.generateInvite(request)
     return reply.inviteCode
