@@ -22,6 +22,8 @@ class ApiClient constructor(val keyValueStore: KeyValueStore, host: String, port
   
   fun login(username: String, password: String): LoginReply {
     val request = LoginRequest.newBuilder()
+        .setUsername(username)
+        .setPassword(password)
         .build()
     return stub.userLogin(request)
   }
@@ -34,7 +36,7 @@ class ApiClient constructor(val keyValueStore: KeyValueStore, host: String, port
   
   fun checkBalance(): CheckBalanceReply {
     val request = CheckBalanceRequest.newBuilder()
-    .setSessionToken(sessionToken)
+        .setSessionToken(sessionToken)
         .build()
     return stub.checkBalance(request)
   }
