@@ -6,15 +6,21 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import azul.paleblue.foundation.azul.AzulApplication
 import azul.paleblue.foundation.azul.R
 import com.sandro.bitcoinpaymenturi.BitcoinPaymentURI
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk15.coroutines.onClick
 
 class SendMoneyActivity : Activity(), AnkoLogger {
+  
+  lateinit var model: SendMoneyModel
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    
+    val app = application as AzulApplication
+    model = app.sendMoneyModel
 
     setContentView(R.layout.activity_send_money)
   }

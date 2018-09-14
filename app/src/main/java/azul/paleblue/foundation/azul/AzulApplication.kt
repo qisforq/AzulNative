@@ -24,6 +24,7 @@ class AzulApplication : Application() {
   val pushModel: PushModel = PushModel(apiClient)
   val walletModel = WalletModel(apiClient)
   val transactionHistoryModel = TransactionHistoryModel(apiClient)
+  val sendMoneyModel = SendMoneyModel(apiClient)
   
   lateinit var redeemInviteModel: RedeemInviteModel
 
