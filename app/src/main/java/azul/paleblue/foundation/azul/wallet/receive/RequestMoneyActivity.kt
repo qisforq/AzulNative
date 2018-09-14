@@ -18,6 +18,9 @@ import com.google.zxing.WriterException
 import com.google.zxing.common.BitMatrix
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk15.coroutines.onClick
+import com.sandro.bitcoinpaymenturi.BitcoinPaymentURI
+
+
 
 class RequestMoneyActivity : Activity(), AnkoLogger {
 
@@ -48,13 +51,21 @@ class RequestMoneyActivity : Activity(), AnkoLogger {
 
   // val requestMoneyUri = "bitcoin:mjSk1Ny9spzU2fouzYgLqGUD8U41iR35QN?amount=0.10&label=Example+Merchant&message=Order+of+flowers+%26+chocolates&r=https://example.com/pay/mjSk1Ny9spzU2fouzYgLqGUD8U41iR35QN"
 
-  fun makeUri(walletAddress: String, amount: String, label: String, message: String, requestUrl: String): Uri {
-    return Uri.Builder().path(walletAddress)
+  fun makeUri(address: String, amount: String, label: String, message: String, requestUrl: String): Uri {
+    return Uri.Builder().path(address)
         .appendQueryParameter("amount", amount)
         .appendQueryParameter("label", label)
         .appendQueryParameter("message", message)
         .appendQueryParameter("r", requestUrl)
         .build()
+    //return BitcoinPaymentURI.Builder()
+    //    .address(address)
+    //    .amount(amount)
+    //    .label(label)
+    //    .message(message)
+    //    // .parameter("foo", "bar")
+    //    // .requiredParameter("fiz", "biz")
+    //    .build()
   }
 
   fun showQrCode(uri: Uri) {

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import com.sandro.bitcoinpaymenturi.BitcoinPaymentURI
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk15.coroutines.onClick
 
@@ -29,7 +30,19 @@ class SendMoneyActivity: Activity(), AnkoLogger {
     val barcodeType = data!!.getStringExtra("barcodeFormat")
     val barcodePayload = data.getStringExtra("barcodeTextPayload")
 
-    val uri = Uri.parse(barcodePayload)
-    // TODO: do something with the URI
+    handleUri(barcodePayload)
   }
+
+  fun handleUri(uri: String) {
+    val bitcoinPaymentURI = BitcoinPaymentURI.parse(uri)
+
+    bitcoinPaymentURI.getAddress()
+    bitcoinPaymentURI.getAmount()
+    bitcoinPaymentURI.getLabel()
+    bitcoinPaymentURI.getMessage()
+    bitcoinPaymentURI.getParameters().size
+
+    info("Uri handled")
+  }
+
 }
