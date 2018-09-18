@@ -1,6 +1,6 @@
 package azul.paleblue.foundation.azul
 
-import android.app.Application
+import android.support.multidex.MultiDexApplication
 import azul.paleblue.foundation.azul.persistence.KeyValueStore
 import azul.paleblue.foundation.azul.invite.InviteModel
 import azul.paleblue.foundation.azul.invite.RedeemInviteModel
@@ -13,7 +13,7 @@ import azul.paleblue.foundation.azul.wallet.history.TransactionHistoryModel
 import azul.paleblue.foundation.azul.wallet.send.SendMoneyModel
 import com.google.firebase.FirebaseApp
 
-class AzulApplication : Application() {
+class AzulApplication : MultiDexApplication() {
 
   lateinit var locationGetter: CurrentLocationGetter
   lateinit var keyValueStore: KeyValueStore
