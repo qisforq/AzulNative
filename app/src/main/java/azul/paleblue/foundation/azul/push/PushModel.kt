@@ -5,7 +5,7 @@ import azul.paleblue.foundation.azul.persistence.KeyValueStore
 import com.google.android.gms.tasks.Task
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.iid.InstanceIdResult
-import foundation.paleblue.azul.proto.LoginReply.LoginReplyStatus
+import foundation.paleblue.azul.proto.LoginReply.Status as LoginReplyStatus
 import org.jetbrains.anko.doAsyncResult
 import java.util.concurrent.Future
 
@@ -34,8 +34,8 @@ class PushModel(val apiClient: ApiClient, val keyValueStore: KeyValueStore) {
         true
       } else {
         when (apiClient.registerForPush(token)) {
-          LoginReplyStatus.LOGIN_FAILURE -> false
-          LoginReplyStatus.LOGIN_SUCCESS -> {
+          LoginReplyStatus.FAILURE -> false
+          LoginReplyStatus.SUCCESS -> {
             keyValueStore.storePushToken(token)
             true
           }

@@ -3,7 +3,8 @@ package azul.paleblue.foundation.azul.account
 import android.app.Activity
 import android.os.Bundle
 import azul.paleblue.foundation.azul.AzulApplication
-import azul.paleblue.foundation.azul.invite.RedeemInviteModel
+import azul.paleblue.foundation.azul.MainActivity
+import azul.paleblue.foundation.azul.account.AccountModel
 import azul.paleblue.foundation.azul.network.ApiClient
 import com.google.android.gms.tasks.OnSuccessListener
 import org.jetbrains.anko.AnkoLogger
@@ -13,13 +14,13 @@ import azul.paleblue.foundation.azul.location.CurrentLocationGetter
 
 
 class RedeemInviteActivity : Activity(), AnkoLogger {
-  lateinit var model: RedeemInviteModel
+  lateinit var model: AccountModel
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
     val app = application as AzulApplication
-    model = app.redeemInviteModel
+    model = app.accountModel
 
     verticalLayout {
       padding = dip(30)
@@ -34,7 +35,6 @@ class RedeemInviteActivity : Activity(), AnkoLogger {
         maxLines = 1
       }
       val inviteCode = editText {
-        setText(model.inviteCode)
         hint = "Invite Code"
         textSize = 24f
         maxLines = 1
@@ -42,9 +42,19 @@ class RedeemInviteActivity : Activity(), AnkoLogger {
       button("Register") {
         textSize = 26f
         onClick {
-          model.redeemInvite(
-              username.text.toString(),
-              password.text.toString())
+          doAsync {
+            val error = model.register(
+                    username.text.toString(),
+                    password.text.toString())
+            uiThread {
+              if (error != null) {
+                toast(error)
+              } else {
+                toast("Login Succeeded")
+                startActivity<MainActivity>()
+              }
+            }
+          }
         }
       }
     }

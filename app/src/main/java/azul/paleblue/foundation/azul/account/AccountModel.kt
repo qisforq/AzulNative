@@ -2,9 +2,9 @@ package azul.paleblue.foundation.azul.account
 
 import azul.paleblue.foundation.azul.network.ApiClient
 import azul.paleblue.foundation.azul.persistence.KeyValueStore
-import foundation.paleblue.azul.proto.LoginReply.LoginReplyStatus
+import foundation.paleblue.azul.proto.LoginReply.Status as LoginReplyStatus
 import foundation.paleblue.azul.proto.RegisterReply
-import foundation.paleblue.azul.proto.RegisterReply.RegisterReplyStatus
+import foundation.paleblue.azul.proto.RegisterReply.Status as RegisterReplyStatus
 import org.jetbrains.anko.doAsyncResult
 import java.util.concurrent.Future
 
@@ -14,8 +14,8 @@ class AccountModel(val apiClient: ApiClient, val kvStore: KeyValueStore) {
     val reply = apiClient.login(username, password)
 
     return when (reply.status) {
-      LoginReplyStatus.LOGIN_FAILURE -> false
-      LoginReplyStatus.LOGIN_SUCCESS -> {
+      LoginReplyStatus.FAILURE -> false
+      LoginReplyStatus.SUCCESS -> {
         kvStore.storeSessionToken(reply.sessionToken)
         true
       }
@@ -25,19 +25,18 @@ class AccountModel(val apiClient: ApiClient, val kvStore: KeyValueStore) {
     }
   }
 
-  fun register(username: String, password: String): Future<RegisterReply> {
-    return doAsyncResult {
-      val reply = apiClient.register(username, password)
+  fun register(username: String, password: String): String? {
+    val reply = apiClient.register(username, password)
 
-      when (reply.status) {
-        RegisterReplyStatus.SUCCESS -> {
-          kvStore.storeSessionToken(reply.sessionToken)
-        }
-        else -> {
-          throw RuntimeException("Unknown register reply status!")
-        }
+    return when (reply.status) {
+      RegisterReplyStatus.FAILURE -> reply.message
+      RegisterReplyStatus.SUCCESS -> {
+        kvStore.storeSessionToken(reply.sessionToken)
+        null
       }
-      reply
+      else -> {
+        throw RuntimeException("Unknown register reply status!")
+      }
     }
   }
 }
