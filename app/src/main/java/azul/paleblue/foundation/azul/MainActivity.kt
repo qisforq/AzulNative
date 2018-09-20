@@ -27,7 +27,6 @@ class MainActivity : Activity(), AnkoLogger {
 
       button("Profile") {
         onClick {
-          toast("Entering Profile activity")
           startActivity<ProfileActivity>()
         }
       }
@@ -37,11 +36,11 @@ class MainActivity : Activity(), AnkoLogger {
         }
       }
     }
+    startActivity<WalletActivity>()
   }
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
     menuInflater.inflate(R.menu.menu_main, menu)
-
     return true
   }
 
