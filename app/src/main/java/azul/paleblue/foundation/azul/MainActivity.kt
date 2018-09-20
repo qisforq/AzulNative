@@ -51,6 +51,10 @@ class MainActivity : Activity(), AnkoLogger {
         startActivity<InviteActivity>()
         true
       }
+      R.id.profile -> {
+        startActivity<ProfileActivity>()
+        true
+      }
       R.id.logout -> {
         KeyValueStore(this).clearSessionToken()
         val logoutIntent = Intent(this, AuthActivity::class.java)
