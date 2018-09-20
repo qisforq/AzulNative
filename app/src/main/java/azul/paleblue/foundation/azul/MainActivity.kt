@@ -53,7 +53,9 @@ class MainActivity : Activity(), AnkoLogger {
       }
       R.id.logout -> {
         KeyValueStore(this).clearSessionToken()
-        finish()
+        val logoutIntent = Intent(this, AuthActivity::class.java)
+        logoutIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(logoutIntent)
         true
       }
       else -> return super.onOptionsItemSelected(item)
