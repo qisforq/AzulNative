@@ -22,23 +22,23 @@ class ProfileActivity : Activity(), AnkoLogger {
             padding = dip(30)
             textView("Session Token: ${token}")
             button("Send Location") {
-              onClick {
-                  locationGetter.getCurrentLocation(OnSuccessListener {
-                      toast("location retrieved")
-                      if (it != null) {
-                          println(it.latitude)
-                          println(it.longitude)
-                          doAsync {
-//                              val apiClient = ApiClient("192.168.1.95", 50051)
+                onClick {
+                    locationGetter.getCurrentLocation(OnSuccessListener {
+                        toast("location retrieved")
+                        if (it != null) {
+                            println(it.latitude)
+                            println(it.longitude)
+                            doAsync {
+                                //                              val apiClient = ApiClient("192.168.1.95", 50051)
 //                              val response = apiClient.redeemInvite("12345", it)
 //                              info("response: $response")
-                          }
-                      } else {
-                          println("No location data available")
-                      }
-                  })
-              }
-          }
+                            }
+                        } else {
+                            println("No location data available")
+                        }
+                    })
+                }
+            }
         }
     }
 }
