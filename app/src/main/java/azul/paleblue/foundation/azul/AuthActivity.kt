@@ -19,12 +19,12 @@ class AuthActivity: Activity(), AnkoLogger {
             verticalLayout {
                 padding = dip(30)
 
-                button("Login") {
+                button(R.string.btn_login) {
                     onClick {
                         startActivity<LoginActivity>()
                     }
                 }
-                button("Create Account") {
+                button(R.string.btn_register) {
                     onClick {
                         startActivity<RedeemInviteActivity>()
                     }

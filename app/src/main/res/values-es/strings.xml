@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="invite_which_app">Which app would you like to use to invite your friend?</string>
+    <string name="btn_login">Ingresa</string>
+    <string name="btn_register">Crea tu cuenta</string>
+</resources>
