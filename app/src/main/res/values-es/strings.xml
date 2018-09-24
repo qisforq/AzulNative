@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="invite_which_app">Which app would you like to use to invite your friend?</string>
+    <string name="app_name">Azul</string>
+
     <string name="btn_login">Ingresa</string>
+    <string name="btn_logout">Cerrar Sesión</string>
     <string name="btn_register">Crea tu cuenta</string>
+    <string name="btn_profile">Perfil</string>
+    <string name="btn_wallet">Billetera</string>
+    <string name="btn_send_location">Enviar Ubicación</string>
+    <string name="btn_get_code">Obtener Código</string>
+    <string name="btn_share_code">Compartir Código</string>
+
+    <string name="text_main">Actividad Principal</string>
+    <string name="text_login">Ingresa</string>
+    <string name="text_token_session">Token de Sesión:</string>
+    <string name="text_share_invite">Usa este código de invitación para unirte a Azul:</string>
+    <string name="text_invite_which_app">¿Qué aplicación te gustaría usar para invitar a tu amigo?</string>
+    <string name="text_invite_code">Codigo de Invitación:</string>
+
+    <string name="hint_name">Nombre</string>
+    <string name="hint_password">Clave</string>
+    <string name="hint_invite_code">Codigo de Invitación</string>
+
+    <!--AndroidManifest.xml-->
+    <string name="menu_login">Ingresa</string>
+    <string name="menu_wallet">Billetera</string>
+    <string name="menu_tx_history">Historial de transacciones</string>
+    <string name="menu_request_money">Solicitar dinero</string>
+    <string name="menu_send_money">Enviar dinero</string>
+    <string name="menu_scan">Escanea</string>
+    <string name="menu_redeem_invite">Crea cuenta</string>
+    <string name="menu_invite_activity">Invita Actividad</string>
+
+    <!--menu_main.xml-->
+    <string name="menu_profile">Perfil</string>
+    <string name="menu_invite">Invita</string>
+    <string name="menu_logout">Cerrar Sesión</string>
+
+    <!--menu_send_money.xml-->
+    <string name="menu_scan_barcode">Escanear código de barras</string>
+
+    <!--activity_wallet.xml-->
+    <string name="btn_transaction_history">Historial de transacciones</string>
+    <string name="btn_request_money">Solicitar dinero</string>
+    <string name="btn_send_money">Enviar dinero</string>
+
+    <!--activity_invite.xml-->
+    <string name="text_you_have_invited">Has invitado a:</string>
+    <string name="text_you_have_earned">Has ganado:</string>
+    <string name="text_each_invite_worth">Cada nueva invitación vale:</string>
+    <string name="text_num_friends">N amigos</string>
+    <string name="btn_invite_more">Invita a más personas</string>
+
+    <!--activity_request_money.xml-->
+    <string name="text_amount_request">Cantidad para solicitar</string>
+    <string name="text_message">Mensaje</string>
+    <string name="text_name">Nombre</string>
+    <string name="btn_make_qr">Haz código QR</string>
+
+    <!--activity_send_money.xml-->
+    <string name="text_recipient">Receptor</string>
+    <string name="text_amount_send">Cantidad para enviar</string>
 </resources>

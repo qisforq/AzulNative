@@ -19,28 +19,28 @@ class InviteView(val viewModel: InviteViewModel) : AnkoComponent<InviteActivity>
       val code = viewModel.inviteCode.value
       val sendIntent: Intent = Intent().apply {
         action = Intent.ACTION_SEND
-        putExtra(Intent.EXTRA_TEXT, "Please use this invite code to join Azul: $code")
+        putExtra(Intent.EXTRA_TEXT, "${R.string.text_share_invite} $code")
         type = "text/plain"
       }
-      ui.owner.startActivity(Intent.createChooser(sendIntent, resources.getText(R.string.invite_which_app)))
+      ui.owner.startActivity(Intent.createChooser(sendIntent, resources.getText(R.string.text_invite_which_app)))
     }
 
     verticalLayout {
       padding = dip(30)
 
       linearLayout {
-        textView("Invite Code:")
+        textView(R.string.text_invite_code)
         inviteText = textView(viewModel.inviteCode.value)
       }
 
-      button("Get Code") {
+      button(R.string.btn_get_code) {
         onClick {
           toast("Disabled")
           //getInviteCode()
         }
       }
 
-      button("Share Code") {
+      button(R.string.btn_share_code) {
         onClick {
           shareInviteCode()
         }

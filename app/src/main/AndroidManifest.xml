@@ -34,29 +34,32 @@
         <activity android:name=".MainActivity" />
         <activity
             android:name=".invite.InviteActivity"
-            android:label="My Activity Title" />
+            android:label="@string/menu_invite_activity" />
         <activity
             android:name=".account.LoginActivity"
-            android:label="Login" />
+            android:label="@string/menu_login" />
         <activity
             android:name=".account.ProfileActivity"
-            android:label="Profile" />
+            android:label="@string/menu_profile" />
         <activity
             android:name=".wallet.WalletActivity"
-            android:label="Wallet" />
+            android:label="@string/menu_wallet" />
         <activity
             android:name=".wallet.history.TransactionHistoryActivity"
-            android:label="Tx History" />
+            android:label="@string/menu_tx_history" />
         <activity
             android:name=".wallet.receive.RequestMoneyActivity"
-            android:label="Request Money" />
+            android:label="@string/menu_request_money" />
         <activity
             android:name=".wallet.send.SendMoneyActivity"
-            android:label="Send Money" />
+            android:label="@string/menu_send_money" />
         <activity
             android:name=".wallet.send.ScannerActivity"
-            android:label="Scan" />
-        <activity android:name=".account.RedeemInviteActivity" />
+            android:label="@string/menu_scan" />
+        <activity
+            android:name=".account.RedeemInviteActivity"
+            android:label="@string/menu_redeem_invite"
+            />
 
         <service android:name=".push.PushService">
             <intent-filter>

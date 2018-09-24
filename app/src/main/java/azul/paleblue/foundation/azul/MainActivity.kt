@@ -23,14 +23,14 @@ class MainActivity : Activity(), AnkoLogger {
 
     verticalLayout {
       padding = dip(30)
-      textView("Main Activity")
+      textView(R.string.text_main)
 
-      button("Profile") {
+      button(R.string.btn_profile) {
         onClick {
           startActivity<ProfileActivity>()
         }
       }
-      button("Wallet") {
+      button(R.string.btn_wallet) {
         onClick {
           startActivity<WalletActivity>()
         }

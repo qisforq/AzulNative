@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import azul.paleblue.foundation.azul.AuthActivity
+import azul.paleblue.foundation.azul.R
 import org.jetbrains.anko.*
 import azul.paleblue.foundation.azul.location.CurrentLocationGetter
 import azul.paleblue.foundation.azul.network.ApiClient
@@ -24,8 +25,8 @@ class ProfileActivity : Activity(), AnkoLogger {
 
         verticalLayout {
             padding = dip(30)
-            textView("Session Token: ${store.getSessionToken()}")
-            button("Send Location") {
+            textView("${R.string.text_token_session} ${store.getSessionToken()}" )
+            button(R.string.btn_send_location) {
                 onClick {
                     locationGetter.getCurrentLocation(OnSuccessListener {
                         toast("location retrieved")
@@ -43,7 +44,7 @@ class ProfileActivity : Activity(), AnkoLogger {
                     })
                 }
             }
-            button("Logout") {
+            button(R.string.btn_logout) {
                 onClick {
                     store.clearSessionToken()
                     startActivity(logoutIntent)

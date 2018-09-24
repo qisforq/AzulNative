@@ -3,5 +3,5 @@
     <item
         android:id="@+id/barcode"
         android:showAsAction="ifRoom"
-        android:title="Scan Barcode" />
+        android:title="@string/menu_scan_barcode" />
 </menu>

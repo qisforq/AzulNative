@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import azul.paleblue.foundation.azul.AzulApplication
 import azul.paleblue.foundation.azul.MainActivity
+import azul.paleblue.foundation.azul.R
 import azul.paleblue.foundation.azul.account.AccountModel
 import azul.paleblue.foundation.azul.network.ApiClient
 import com.google.android.gms.tasks.OnSuccessListener
@@ -25,21 +26,21 @@ class RedeemInviteActivity : Activity(), AnkoLogger {
     verticalLayout {
       padding = dip(30)
       val username = editText {
-        hint = "Name"
+        hint = getString(R.string.hint_name)
         textSize = 24f
         maxLines = 1
       }
       val password = editText(InputConstraints.PASSWORD) {
-        hint = "Password"
+        hint = getString(R.string.hint_password)
         textSize = 24f
         maxLines = 1
       }
       val inviteCode = editText {
-        hint = "Invite Code"
+        hint = getString(R.string.hint_invite_code)
         textSize = 24f
         maxLines = 1
       }
-      button("Register") {
+      button(R.string.btn_register) {
         textSize = 26f
         onClick {
           doAsync {

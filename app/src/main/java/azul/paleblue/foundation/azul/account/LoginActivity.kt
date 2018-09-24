@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import azul.paleblue.foundation.azul.AzulApplication
 import azul.paleblue.foundation.azul.MainActivity
+import azul.paleblue.foundation.azul.R
 import azul.paleblue.foundation.azul.invite.RedeemInviteModel
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk15.coroutines.onClick
@@ -20,20 +21,20 @@ class LoginActivity: Activity(), AnkoLogger {
     verticalLayout {
       padding = dip(30)
 
-      textView("Login")
+      textView(R.string.text_login)
 
       val username = editText {
-        hint = "Name"
+        hint = getString(R.string.hint_name)
         textSize = 24f
         maxLines = 1
       }
       val password = editText(InputConstraints.PASSWORD) {
-        hint = "Password"
+        hint = getString(R.string.hint_password)
         textSize = 24f
         maxLines = 1
       }
 
-      button("Login") {
+      button(R.string.btn_login) {
         onClick {
           info("Perform Login")
           doAsync {
